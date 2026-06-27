@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="apple-mobile-web-app-title" content="Clinic Scheduler"/>
+<title>Clinic Scheduler</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;-webkit-text-size-adjust:100%;}
+button,select{font-family:inherit;}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useCallback} = React;
+const DAYS=["Monday","Tuesday","Wednesday","Thursday","Friday"];
+const SHIFTS=["AM","PM"];
+const RNS=["Kathy","Yanna","Maria","Nina"];
+const MEAS=["Lolita","Sienna","Yessenia","Brie","Yajari"];
+const STRUCTURAL_UNAVAIL={Kathy:["Monday"]};
+const RN_WEEKLY_SHIFTS={Kathy:7,Yanna:9,Maria:9,Nina:9};
+const PROVIDERS=["Dr. Ann Kim","Dr. Nate Kim","Dr. Lew","Dr. Ordonez","Dr. Ghorayeb","Dr. Patanwala","Linda Lor, NP","Megan Henry, NP"];
+const PREFERRED_DYAD={"Dr. Ann Kim":"Lolita","Dr. Nate Kim":"Brie","Dr. Ordonez":"Yajari","Dr. Ghorayeb":"Sienna","Dr. Patanwala":"Yessenia","Dr. Lew":null,"Linda Lor, NP":null,"Megan Henry, NP":null};
+const RN_ROLES=["Triage","Clinic","BP Clinic","Admin","Off"];
+const MEA_ROLES=["Provider MEA","Blood Draw","Float","Admin","Unassigned"];
+const BADGE={Triage:{bg:"#ede9fe",c:"#5b21b6",b:"#ddd6fe"},Clinic:{bg:"#dbeafe",c:"#1e40af",b:"#bfdbfe"},"BP Clinic":{bg:"#fce7f3",c:"#9d174d",b:"#fbcfe8"},Admin:{bg:"#fef3c7",c:"#92400e",b:"#fde68a"},Off:{bg:"#f1f5f9",c:"#94a3b8",b:"#e2e8f0"},"Time Off":{bg:"#fff1f2",c:"#e11d48",b:"#fecdd3"},"Provider MEA":{bg:"#ccfbf1",c:"#115e59",b:"#99f6e4"},"Blood Draw":{bg:"#fee2e2",c:"#991b1b",b:"#fecaca"},Float:{bg:"#e0e7ff",c:"#3730a3",b:"#c7d2fe"},Unassigned:{bg:"#f9fafb",c:"#9ca3af",b:"#f3f4f6"}};
+
+const isStructurallyUnavail=(rn,day)=>(STRUCTURAL_UNAVAIL[rn]||[]).includes(day);
+const isMeganPresent=(cc,day,shift)=>day==="Tuesday"&&shift==="PM"&&cc?.[day]?.[shift]?.megan!==false;
+const clinicOpen=(cc,day,shift)=>cc?.[day]?.[shift]?.open!==false;
+const clinicBD=(cc,day,shift)=>cc?.[day]?.[shift]?.bloodDraw===true;
+const clinicBP=(cc,day,shift)=>cc?.[day]?.[shift]?.bpClinic===true;
+const isKathyWFH=(rn,day)=>rn==="Kathy"&&day==="Thursday";
+const isOnTimeOff=(to,type,name,day,shift)=>to?.[type]?.[name]?.[day]?.[shift]===true;
+const isTrulyUnavailable=(to,rn,day,shift)=>isStructurallyUnavail(rn,day)||isOnTimeOff(to,"rn",rn,day,shift);
+
+const STORAGE_KEY="clinic-v4";
+const loadHistory=()=>{try{const r=localStorage.getItem(STORAGE_KEY);return r?JSON.parse(r):{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}catch{return{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}};
+const saveHistory=h=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(h));}catch{}};
+
+function buildCC(){const c={};DAYS.forEach(day=>{c[day]={};SHIFTS.forEach(shift=>{c[day][shift]={open:!(day==="Wednesday"&&shift==="PM"),bloodDraw:shift==="AM"&&["Monday","Wednesday","Friday"].includes(day),bpClinic:(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM"),megan:day==="Tuesday"&&shift==="PM"};});});return c;}
+function buildProviders(cc){const p={};DAYS.forEach(day=>{p[day]={};SHIFTS.forEach(shift=>{p[day][shift]=isMeganPresent(cc,day,shift)?["Megan Henry, NP"]:[];});});return p;}
+function buildAssignments(){const a={};DAYS.forEach(day=>{a[day]={};SHIFTS.forEach(shift=>{a[day][shift]={rn:{},mea:{}};RNS.forEach(rn=>{a[day][shift].rn[rn]=null;});MEAS.forEach(mea=>{a[day][shift].mea[mea]={role:null,provider:null};});});});return a;}
+function buildTO(){const t={rn:{},mea:{}};RNS.forEach(rn=>{t.rn[rn]={};DAYS.forEach(day=>{t.rn[rn][day]={AM:false,PM:false};});});MEAS.forEach(mea=>{t.mea[mea]={};DAYS.forEach(day=>{t.mea[mea][day]={AM:false,PM:false};});});return t;}
+
+function generateSchedule(ps,history,to,cc){
+  const asgn=buildAssignments();
+  const rsa={};RNS.forEach(rn=>(rsa[rn]=0));
+  const rbd={};RNS.forEach(rn=>{rbd[rn]={};});
+  const rrh={};RNS.forEach(rn=>{rrh[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0,...(history.rnRoles?.[rn]||{})};});
+  const bph={};RNS.forEach(rn=>{bph[rn]=history.bpClinic?.[rn]||0;});
+  const rwr={};RNS.forEach(rn=>(rwr[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0}));
+  const msh={};MEAS.forEach(m=>{msh[m]=history.meaShifts?.[m]||0;});
+  const mws={};MEAS.forEach(m=>(mws[m]=0));
+  const mwr={};MEAS.forEach(m=>(mwr[m]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0}));
+  const mwa={};MEAS.forEach(m=>(mwa[m]=0));
+  const mwb={};MEAS.forEach(m=>(mwb[m]=0));
+  const pool=(day,shift)=>RNS.filter(rn=>!isTrulyUnavailable(to,rn,day,shift)&&rsa[rn]<RN_WEEKLY_SHIFTS[rn]&&!(isKathyWFH(rn,day)&&shift==="AM")).sort((a,b)=>rsa[a]-rsa[b]);
+  const aRN=(slot,rn,role,day)=>{slot.rn[rn]=role;if(role!=="Off"){rsa[rn]++;if(rwr[rn][role]!==undefined)rwr[rn][role]++;rbd[rn][day]=role;}};
+  DAYS.forEach(day=>{["AM","PM"].forEach(shift=>{
+    if(!clinicOpen(cc,day,shift))return;
+    const slot=asgn[day][shift];const pl=ps[day][shift];
+    const hasBD=clinicBD(cc,day,shift);const hasBP=clinicBP(cc,day,shift);
+    RNS.forEach(rn=>{
+      if(isStructurallyUnavail(rn,day))slot.rn[rn]="Off";
+      else if(isOnTimeOff(to,"rn",rn,day,shift))slot.rn[rn]="Time Off";
+      else if(isKathyWFH(rn,day)&&shift==="AM")slot.rn[rn]="Off";
+      else slot.rn[rn]=null;
+    });
+    if(isKathyWFH("Kathy",day)&&shift==="PM"&&!isOnTimeOff(to,"rn","Kathy",day,shift)&&rsa["Kathy"]<RN_WEEKLY_SHIFTS["Kathy"])aRN(slot,"Kathy","Admin",day);
+    let p=pool(day,shift);
+    const amR=rn=>shift==="PM"?rbd[rn]?.[day]:null;
+    if(hasBP){const bp=[...p].filter(rn=>amR(rn)!=="BP Clinic").sort((a,b)=>((bph[a]||0)+rwr[a]["BP Clinic"]*10)-((bph[b]||0)+rwr[b]["BP Clinic"]*10))[0];if(bp){aRN(slot,bp,"BP Clinic",day);p=p.filter(r=>r!==bp);}}
+    const tr=[...p].filter(rn=>amR(rn)!=="Triage").sort((a,b)=>((rrh[a]?.Triage||0)+rwr[a].Triage*5)-((rrh[b]?.Triage||0)+rwr[b].Triage*5))[0];
+    if(tr){aRN(slot,tr,"Triage",day);p=p.filter(r=>r!==tr);}
+    [...p].filter(rn=>amR(rn)!=="Clinic").sort((a,b)=>((rrh[a]?.Clinic||0)+rwr[a].Clinic*3)-((rrh[b]?.Clinic||0)+rwr[b].Clinic*3)).slice(0,Math.min(2,p.length)).forEach(rn=>{aRN(slot,rn,"Clinic",day);p=p.filter(r=>r!==rn);});
+    const tf=RNS.some(rn=>slot.rn[rn]==="Triage");const cf=RNS.some(rn=>slot.rn[rn]==="Clinic");const bf=!hasBP||RNS.some(rn=>slot.rn[rn]==="BP Clinic");
+    if(tf&&cf&&bf&&p.length>0){const adm=[...p].filter(rn=>rwr[rn].Admin<2&&amR(rn)!=="Admin").sort((a,b)=>((rrh[a]?.Admin||0)+rwr[a].Admin)-((rrh[b]?.Admin||0)+rwr[b].Admin))[0];if(adm){aRN(slot,adm,"Admin",day);p=p.filter(r=>r!==adm);}}
+    p.forEach(rn=>{if(!slot.rn[rn])slot.rn[rn]="Off";});RNS.forEach(rn=>{if(slot.rn[rn]===null)slot.rn[rn]="Off";});
+    let mp=MEAS.filter(m=>!isOnTimeOff(to,"mea",m,day,shift)).sort((a,b)=>(msh[a]+mws[a])-(msh[b]+mws[b]));
+    MEAS.forEach(mea=>{if(isOnTimeOff(to,"mea",mea,day,shift))slot.mea[mea]={role:"Time Off",provider:null};});
+    const aM=(mea,role,prov=null)=>{slot.mea[mea]={role,provider:prov};mws[mea]++;if(mwr[mea][role]!==undefined)mwr[mea][role]++;if(role==="Admin")mwa[mea]++;if(role==="Blood Draw")mwb[mea]++;mp=mp.filter(m=>m!==mea);};
+    if(hasBD){const bd=[...mp].sort((a,b)=>(mwb[a]*3+msh[a]+mws[a])-(mwb[b]*3+msh[b]+mws[b]))[0];if(bd)aM(bd,"Blood Draw");}
+    const up=[...pl];
+    for(const pv of [...up]){const pr=PREFERRED_DYAD[pv];if(pr&&mp.includes(pr)){aM(pr,"Provider MEA",pv);up.splice(up.indexOf(pv),1);}}
+    for(const pv of [...up]){if(mp.length===0)break;aM(mp[0],"Provider MEA",pv);up.splice(up.indexOf(pv),1);}
+    let fc=0;while(mp.length>0&&fc<2){aM(mp[0],"Float");fc++;}
+    [...mp].sort((a,b)=>(mwa[a]*4+msh[a])-(mwa[b]*4+msh[b])).forEach(mea=>aM(mea,"Admin"));
+  });});
+  return{assignments:asgn,weeklyRoles:rwr,meaWeeklyRoles:mwr};
+}
+function detectConflicts(asgn,ps,to,cc){
+  const conflicts=[];
+  const rwa={};RNS.forEach(r=>(rwa[r]=0));const rws={};RNS.forEach(r=>(rws[r]=0));
+  const mwa={};MEAS.forEach(m=>(mwa[m]=0));const rdr={};RNS.forEach(rn=>{rdr[rn]={};});
+  DAYS.forEach(day=>{SHIFTS.forEach(shift=>{
+    if(!clinicOpen(cc,day,shift))return;
+    const slot=asgn[day][shift];const pl=ps[day][shift];const label=`${day} ${shift}`;
+    const hasBD=clinicBD(cc,day,shift);const hasBP=clinicBP(cc,day,shift);
+    const actRNs=RNS.filter(rn=>{const r=slot.rn[rn];return r&&r!=="Off"&&r!=="Time Off";});
+    const roles=actRNs.map(rn=>slot.rn[rn]);
+    const tc=roles.filter(r=>r==="Triage").length;const clc=roles.filter(r=>r==="Clinic").length;
+    const bpc=roles.filter(r=>r==="BP Clinic").length;const ac=roles.filter(r=>r==="Admin").length;
+    if(tc===0)conflicts.push({shift:label,msg:"No RN assigned to Triage."});
+    if(tc>1)conflicts.push({shift:label,msg:"More than one RN in Triage."});
+    if(clc<1)conflicts.push({shift:label,msg:"No RN assigned to Clinic."});
+    if(hasBP&&bpc===0)conflicts.push({shift:label,msg:"BP Clinic active but no RN assigned."});
+    if(!hasBP&&bpc>0)conflicts.push({shift:label,msg:"BP Clinic RN assigned but cancelled."});
+    if(ac>0&&(tc===0||clc===0))conflicts.push({shift:label,msg:"Admin assigned but clinical coverage incomplete."});
+    actRNs.forEach(rn=>{const role=slot.rn[rn];if(!rdr[rn][day])rdr[rn][day]=role;else if(rdr[rn][day]===role)conflicts.push({shift:label,msg:`${rn} has ${role} in both AM and PM on ${day}.`});});
+    RNS.forEach(rn=>{const role=slot.rn[rn];if(isOnTimeOff(to,"rn",rn,day,shift))return;if(role&&role!=="Off"&&role!=="Time Off"){rws[rn]++;if(role==="Admin")rwa[rn]++;}});
+    const actM=MEAS.filter(m=>slot.mea[m]?.role&&slot.mea[m]?.role!=="Time Off");
+    const mr=actM.map(m=>slot.mea[m]?.role);
+    const bdc=mr.filter(r=>r==="Blood Draw").length;const flc=mr.filter(r=>r==="Float").length;
+    const pM=MEAS.filter(m=>slot.mea[m]?.role==="Provider MEA");
+    if(hasBD&&bdc===0)conflicts.push({shift:label,msg:"Blood Draw active but no MEA assigned."});
+    if(!hasBD&&bdc>0)conflicts.push({shift:label,msg:"Blood Draw MEA assigned but cancelled."});
+    if(flc>2)conflicts.push({shift:label,msg:`${flc} Float MEAs — max is 2.`});
+    const cp=pM.map(m=>slot.mea[m]?.provider).filter(Boolean);
+    pl.forEach(pv=>{if(!cp.includes(pv))conflicts.push({shift:label,msg:`${pv} has no MEA.`});});
+    pM.forEach(mea=>{const pv=slot.mea[mea]?.provider;if(pv){const pr=PREFERRED_DYAD[pv];if(pr&&pr!==mea)conflicts.push({shift:label,msg:`${pv} paired with ${mea} (preferred: ${pr}).`,isDyadBreak:true});}});
+    MEAS.forEach(mea=>{if(slot.mea[mea]?.role==="Admin")mwa[mea]++;});
+  });});
+  RNS.forEach(rn=>{
+    const tos=DAYS.reduce((s,day)=>s+SHIFTS.reduce((ss,shift)=>ss+(clinicOpen(cc,day,shift)&&isOnTimeOff(to,"rn",rn,day,shift)?1:0),0),0);
+    const target=Math.max(0,RN_WEEKLY_SHIFTS[rn]-tos);
+    if(target>0&&rwa[rn]<1)conflicts.push({shift:"Weekly",msg:`${rn} has no Admin shift.`});
+    if(rwa[rn]>2)conflicts.push({shift:"Weekly",msg:`${rn} has ${rwa[rn]} Admin shifts (max 2).`});
+    if(rws[rn]<target-1)conflicts.push({shift:"Weekly",msg:`${rn} only ${rws[rn]} of ${target} shifts.`});
+    if(rws[rn]>RN_WEEKLY_SHIFTS[rn])conflicts.push({shift:"Weekly",msg:`${rn} over shift target.`});
+  });
+  MEAS.forEach(mea=>{
+    const hw=DAYS.some(day=>SHIFTS.some(shift=>{const r=asgn[day][shift]?.mea[mea]?.role;return r&&r!=="Time Off";}));
+    if(hw&&mwa[mea]<1)conflicts.push({shift:"Weekly",msg:`${mea} has no Admin shift.`});
+  });
+  return conflicts;
+}
+
+function Badge({role}){
+  if(!role)return React.createElement("span",{style:{fontSize:11,color:"#cbd5e1"}},"—");
+  const c=BADGE[role]||BADGE.Unassigned;
+  return React.createElement("span",{style:{fontSize:11,fontWeight:600,padding:"2px 8px",borderRadius:9999,border:"1px solid",background:c.bg,color:c.c,borderColor:c.b,whiteSpace:"nowrap",display:"inline-block"}},role);
+}
+
+function WeekSetupPanel({cc,onToggle}){
+  const [open,setOpen]=useState(true);
+  const cols=DAYS.flatMap(day=>SHIFTS.filter(s=>!(day==="Wednesday"&&s==="PM")).map(shift=>({day,shift})));
+  const rows=[
+    {label:"🏥 Clinic Open",field:"open",col:"#475569",elig:()=>true},
+    {label:"🩸 Blood Draw",field:"bloodDraw",col:"#dc2626",elig:(d,s)=>s==="AM"&&["Monday","Wednesday","Friday"].includes(d)},
+    {label:"💉 BP Clinic",field:"bpClinic",col:"#be185d",elig:(d,s)=>(d==="Wednesday"&&s==="AM")||(d==="Friday"&&s==="PM")},
+    {label:"👩‍⚕️ Megan Henry",field:"megan",col:"#4338ca",elig:(d,s)=>d==="Tuesday"&&s==="PM"},
+  ];
+  const P={borderRadius:12,border:"1px solid #bae6fd",background:"#f0f9ff",overflow:"hidden"};
+  return React.createElement("div",{style:P},
+    React.createElement("button",{style:{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:"transparent",border:"none",cursor:"pointer",borderBottom:open?"1px solid #bae6fd":"none"},onClick:()=>setOpen(v=>!v)},
+      React.createElement("div",{style:{display:"flex",alignItems:"center",gap:8}},
+        React.createElement("span",{style:{fontSize:13,fontWeight:700,color:"#0369a1"}},"⚙ Week Setup"),
+        React.createElement("span",{style:{fontSize:11,color:"#7dd3fc"}},"Configure per shift")
+      ),
+      React.createElement("span",{style:{fontSize:11,fontWeight:700,color:"#7dd3fc"}},open?"▲ Hide":"▼ Show")
+    ),
+    open&&React.createElement("div",{style:{padding:"0 14px 14px",overflowX:"auto"}},
+      React.createElement("table",{style:{borderCollapse:"collapse",fontSize:11,minWidth:"100%"}},
+        React.createElement("thead",null,React.createElement("tr",null,
+          React.createElement("th",{style:{textAlign:"left",paddingRight:10,paddingBottom:6,fontWeight:700,color:"#64748b",minWidth:100}},"Setting"),
+          cols.map(({day,shift})=>React.createElement("th",{key:`${day}-${shift}`,style:{textAlign:"center",padding:"0 4px 6px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap",minWidth:40}},
+            React.createElement("div",null,day.slice(0,3)),
+            React.createElement("div",{style:{color:shift==="AM"?"#0ea5e9":"#f97316"}},shift)
+          ))
+        )),
+        React.createElement("tbody",null,rows.map(({label,field,col,elig})=>
+          React.createElement("tr",{key:field,style:{borderTop:"1px solid #bae6fd"}},
+            React.createElement("td",{style:{padding:"7px 10px 7px 0",fontWeight:600,color:col,whiteSpace:"nowrap"}},label),
+            cols.map(({day,shift})=>{
+              const e=elig(day,shift);const io=cc[day][shift].open;const chk=cc[day][shift][field];const dis=!io&&field!=="open";
+              return React.createElement("td",{key:`${day}-${shift}`,style:{textAlign:"center",padding:"7px 4px"}},
+                e?React.createElement("input",{type:"checkbox",checked:chk&&(field==="open"||io),disabled:dis,onChange:()=>onToggle(day,shift,field),style:{width:15,height:15,opacity:dis?.3:1,cursor:dis?"not-allowed":"pointer"}}):
+                  React.createElement("span",{style:{color:"#e2e8f0"}},"—")
+              );
+            })
+          )
+        ))
+      ),
+      React.createElement("p",{style:{fontSize:9,color:"#7dd3fc",fontStyle:"italic",marginTop:6}},"Wed PM always closed. Uncheck Clinic Open to cancel a full shift.")
+    )
+  );
+}
+
+function TimeOffPanel({to,onToggle,cc}){
+  const [open,setOpen]=useState(false);
+  const groups=[{label:"RNs",type:"rn",people:RNS},{label:"MEAs",type:"mea",people:MEAS}];
+  const cols=DAYS.flatMap(day=>SHIFTS.filter(s=>clinicOpen(cc,day,s)).map(shift=>({day,shift})));
+  const P={borderRadius:12,border:"1px solid #fecdd3",background:"#fff1f2",overflow:"hidden"};
+  return React.createElement("div",{style:P},
+    React.createElement("button",{style:{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"10px 14px",background:"transparent",border:"none",cursor:"pointer",borderBottom:open?"1px solid #fecdd3":"none"},onClick:()=>setOpen(v=>!v)},
+      React.createElement("span",{style:{fontSize:13,fontWeight:700,color:"#be123c"}},"🗓 Time Off / Unavailability"),
+      React.createElement("span",{style:{fontSize:11,fontWeight:700,color:"#fda4af"}},open?"▲ Hide":"▼ Show")
+    ),
+    open&&React.createElement("div",{style:{padding:"0 14px 14px"}},
+      groups.map(({label,type,people})=>React.createElement("div",{key:type,style:{marginBottom:14}},
+        React.createElement("p",{style:{fontSize:9,fontWeight:700,color:"#fb7185",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}},label),
+        React.createElement("div",{style:{overflowX:"auto"}},
+          React.createElement("table",{style:{fontSize:11,borderCollapse:"collapse"}},
+            React.createElement("thead",null,React.createElement("tr",null,
+              React.createElement("th",{style:{textAlign:"left",paddingRight:8,minWidth:76}}),
+              cols.map(({day,shift})=>React.createElement("th",{key:`${day}-${shift}`,style:{textAlign:"center",padding:"0 3px 4px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap"}},
+                React.createElement("div",null,day.slice(0,3)),
+                React.createElement("div",{style:{color:shift==="AM"?"#0ea5e9":"#f97316"}},shift)
+              ))
+            )),
+            React.createElement("tbody",null,people.map(person=>
+              React.createElement("tr",{key:person,style:{borderTop:"1px solid #fecdd3"}},
+                React.createElement("td",{style:{padding:"5px 8px 5px 0",fontWeight:600,color:"#334155",whiteSpace:"nowrap"}},
+                  person,
+                  type==="rn"&&person==="Kathy"&&React.createElement("span",{style:{display:"block",fontSize:9,color:"#94a3b8",fontWeight:400}},"WFH Thu")
+                ),
+                cols.map(({day,shift})=>{
+                  const struct=type==="rn"&&isStructurallyUnavail(person,day);
+                  const chk=struct||isOnTimeOff(to,type,person,day,shift);
+                  return React.createElement("td",{key:`${day}-${shift}`,style:{textAlign:"center",padding:"5px 3px"}},
+                    struct?React.createElement("span",{style:{color:"#cbd5e1"}},"✕"):
+                      React.createElement("input",{type:"checkbox",checked:chk,onChange:()=>onToggle(type,person,day,shift),style:{width:15,height:15,accentColor:"#e11d48"}})
+                  );
+                })
+              )
+            ))
+          )
+        )
+      )),
+      React.createElement("p",{style:{fontSize:9,color:"#fda4af",fontStyle:"italic"}},"✕ = permanent (Kathy Mon). Kathy Thu WFH defaults can still be marked time-off.")
+    )
+  );
+}
+
+function RunningTotals({history,wr,mwr,onClear}){
+  const [tab,setTab]=useState("rn");
+  const rnR=["Triage","Clinic","BP Clinic","Admin"];const mR=["Provider MEA","Blood Draw","Float","Admin"];
+  const TH={padding:"5px 8px",fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.07em",background:"#f8fafc",textAlign:"center"};
+  const TD={padding:"5px 8px",textAlign:"center",borderTop:"1px solid #f8fafc",fontSize:11};
+  return React.createElement("div",{style:{borderRadius:12,border:"1px solid #e2e8f0",background:"#fff",overflow:"hidden"}},
+    React.createElement("div",{style:{padding:"8px 12px",borderBottom:"1px solid #f1f5f9",display:"flex",alignItems:"center",justifyContent:"space-between"}},
+      React.createElement("div",{style:{display:"flex",gap:4}},
+        ["rn","mea"].map(t=>React.createElement("button",{key:t,onClick:()=>setTab(t),style:{fontSize:11,padding:"4px 10px",borderRadius:8,border:"none",fontWeight:600,background:tab===t?"#4f46e5":"transparent",color:tab===t?"#fff":"#64748b",cursor:"pointer"}},t==="rn"?"RN Totals":"MEA Totals"))
+      ),
+      React.createElement("div",{style:{display:"flex",gap:8,alignItems:"center"}},
+        React.createElement("span",{style:{fontSize:11,color:"#94a3b8"}},`${history.weeks} wk${history.weeks!==1?"s":""}`),
+        React.createElement("button",{onClick:onClear,style:{fontSize:11,color:"#ef4444",background:"none",border:"none",textDecoration:"underline",cursor:"pointer"}},"Clear")
+      )
+    ),
+    React.createElement("div",{style:{overflowX:"auto"}},
+      tab==="rn"?React.createElement("table",{style:{width:"100%",borderCollapse:"collapse",fontSize:12}},
+        React.createElement("thead",null,React.createElement("tr",null,
+          React.createElement("th",{style:{...TH,textAlign:"left",padding:"5px 12px"}},"RN"),
+          rnR.map(r=>React.createElement("th",{key:r,style:TH},r)),
+          React.createElement("th",{style:{...TH,color:"#6366f1"}},"This Wk")
+        )),
+        React.createElement("tbody",null,RNS.map(rn=>{
+          const h=history.rnRoles?.[rn]||{};const w=wr?.[rn]||{};
+          return React.createElement("tr",{key:rn},
+            React.createElement("td",{style:{...TD,textAlign:"left",padding:"5px 12px",fontWeight:600,color:"#334155"}},rn),
+            rnR.map(role=>React.createElement("td",{key:role,style:TD},
+              React.createElement("span",{style:{color:"#475569"}},h[role]||0),
+              (w[role]||0)>0&&React.createElement("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},`+${w[role]}`)
+            )),
+            React.createElement("td",{style:{...TD,color:"#4f46e5",fontWeight:700}},Object.values(w).reduce((s,v)=>s+v,0))
+          );
+        }))
+      ):React.createElement("table",{style:{width:"100%",borderCollapse:"collapse",fontSize:12}},
+        React.createElement("thead",null,React.createElement("tr",null,
+          React.createElement("th",{style:{...TH,textAlign:"left",padding:"5px 12px"}},"MEA"),
+          React.createElement("th",{style:TH},"Total"),
+          mR.map(r=>React.createElement("th",{key:r,style:TH},r)),
+          React.createElement("th",{style:{...TH,color:"#6366f1"}},"This Wk")
+        )),
+        React.createElement("tbody",null,MEAS.map(mea=>{
+          const hs=history.meaShifts?.[mea]||0;const hr=history.meaRoles?.[mea]||{};const w=mwr?.[mea]||{};const wt=Object.values(w).reduce((s,v)=>s+v,0);
+          return React.createElement("tr",{key:mea},
+            React.createElement("td",{style:{...TD,textAlign:"left",padding:"5px 12px",fontWeight:600,color:"#334155"}},mea),
+            React.createElement("td",{style:TD},React.createElement("span",{style:{color:"#475569"}},hs),wt>0&&React.createElement("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},`+${wt}`)),
+            mR.map(role=>React.createElement("td",{key:role,style:TD},
+              React.createElement("span",{style:{color:"#475569"}},hr[role]||0),
+              (w[role]||0)>0&&React.createElement("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},`+${w[role]}`)
+            )),
+            React.createElement("td",{style:{...TD,color:"#4f46e5",fontWeight:700}},wt)
+          );
+        }))
+      )
+    )
+  );
+}
+
+function MEARow({mea,meaData,pl,onChange,isOut}){
+  const role=meaData?.role||null;const prov=meaData?.provider||null;
+  const hRC=v=>onChange({role:v==="Unassigned"?null:v,provider:v==="Provider MEA"?prov:null});
+  const hP=p=>onChange({role,provider:prov===p?null:p});
+  const SEL={fontSize:11,border:"1px solid #e2e8f0",borderRadius:8,padding:"4px 6px",background:"#fff",color:"#334155",marginLeft:"auto"};
+  return React.createElement("div",{style:{marginBottom:8,opacity:isOut?.5:1}},
+    React.createElement("div",{style:{display:"flex",alignItems:"center",gap:6}},
+      React.createElement("span",{style:{fontSize:13,fontWeight:600,color:"#334155",width:72,flexShrink:0}},mea),
+      React.createElement("div",{style:{display:"flex",alignItems:"center",gap:6,flex:1,minWidth:0}},
+        React.createElement(Badge,{role}),
+        isOut?React.createElement("span",{style:{marginLeft:"auto",fontSize:11,color:"#e11d48",fontWeight:600}},"Time Off"):
+          React.createElement("select",{value:role||"Unassigned",onChange:e=>hRC(e.target.value),style:SEL},MEA_ROLES.map(r=>React.createElement("option",{key:r},r)))
+      )
+    ),
+    !isOut&&role==="Provider MEA"&&pl.length>0&&React.createElement("div",{style:{marginLeft:72,display:"flex",flexWrap:"wrap",gap:4,marginTop:4}},
+      pl.map(p=>{
+        const sel=prov===p;const pf=PREFERRED_DYAD[p];const pIP=pf===mea;const pIB=sel&&pf&&pf!==mea;
+        return React.createElement("button",{key:p,onClick:()=>hP(p),style:{fontSize:10,padding:"2px 8px",borderRadius:9999,border:"1px solid",background:sel?(pIB?"#ffedd5":"#0d9488"):"#fff",color:sel?(pIB?"#9a3412":"#fff"):"#64748b",borderColor:sel?(pIB?"#fed7aa":"#0d9488"):"#cbd5e1",cursor:"pointer"}},
+          pIP&&sel?"★ ":pIB?"⚑ ":"",p
+        );
+      }),
+      !prov&&React.createElement("span",{style:{fontSize:10,color:"#f59e0b"}},"Select provider"),
+      prov&&PREFERRED_DYAD[prov]&&PREFERRED_DYAD[prov]!==mea&&React.createElement("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad break")
+    )
+  );
+}
+function ShiftCard({day,shift,providers,asgn,to,cc,onPC,onRC,onMC}){
+  const io=clinicOpen(cc,day,shift);const hasBD=clinicBD(cc,day,shift);const hasBP=clinicBP(cc,day,shift);
+  const mp=isMeganPresent(cc,day,shift);const slot=asgn[day][shift];const pl=providers[day][shift];
+  const isMD=day==="Tuesday"&&shift==="PM";
+  const bdE=shift==="AM"&&["Monday","Wednesday","Friday"].includes(day);
+  const bpE=(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM");
+  const tP=p=>{if(isMD&&p==="Megan Henry, NP")return;const u=pl.includes(p)?pl.filter(x=>x!==p):[...pl,p];onPC(day,shift,u);};
+  const CARD={borderRadius:12,border:"1px solid #e2e8f0",background:"#fff",boxShadow:"0 1px 3px rgba(0,0,0,.05)",overflow:"hidden"};
+  const SEC={padding:10,borderTop:"1px solid #f1f5f9"};const SL={fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:7,display:"block"};
+  const PBTN={fontSize:10,padding:"3px 8px",borderRadius:9999,border:"1px solid",cursor:"pointer"};
+  const SEL={fontSize:11,border:"1px solid #e2e8f0",borderRadius:8,padding:"4px 6px",background:"#fff",color:"#334155",marginLeft:"auto"};
+  if(!io)return React.createElement("div",{style:{borderRadius:12,border:"1px dashed #e2e8f0",background:"#f8fafc",display:"flex",alignItems:"center",justifyContent:"center",height:110}},
+    React.createElement("span",{style:{fontSize:11,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.1em"}},day==="Wednesday"&&shift==="PM"?"Clinic Closed":"Shift Cancelled")
+  );
+  return React.createElement("div",{style:CARD},
+    React.createElement("div",{style:{padding:10}},
+      React.createElement("span",{style:SL},"Providers on Shift"),
+      React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:7}},
+        PROVIDERS.map(p=>{const isMB=isMD&&p==="Megan Henry, NP";const on=pl.includes(p);
+          return React.createElement("button",{key:p,onClick:()=>tP(p),disabled:isMB,style:{...PBTN,background:on?"#4f46e5":"#fff",color:on?"#fff":"#64748b",borderColor:on?"#4f46e5":"#cbd5e1",opacity:isMB?.6:1,cursor:isMB?"default":"pointer"}},p,(isMB&&on)?" 🔒":(isMB&&!on)?" ✕":"");
+        })
+      ),
+      React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:5}},
+        bdE&&React.createElement("span",{style:{fontSize:9,fontWeight:600,padding:"2px 8px",borderRadius:9999,border:"1px solid",background:hasBD?"#fee2e2":"#f8fafc",color:hasBD?"#991b1b":"#94a3b8",borderColor:hasBD?"#fecaca":"#e2e8f0",textDecoration:hasBD?"none":"line-through"}},"🩸 Blood Draw"),
+        bpE&&React.createElement("span",{style:{fontSize:9,fontWeight:600,padding:"2px 8px",borderRadius:9999,border:"1px solid",background:hasBP?"#fce7f3":"#f8fafc",color:hasBP?"#9d174d":"#94a3b8",borderColor:hasBP?"#fbcfe8":"#e2e8f0",textDecoration:hasBP?"none":"line-through"}},"💉 BP Clinic")
+      )
+    ),
+    React.createElement("div",{style:SEC},
+      React.createElement("span",{style:SL},"RN Assignments"),
+      RNS.map(rn=>{
+        const struct=isStructurallyUnavail(rn,day);const ol=isOnTimeOff(to,"rn",rn,day,shift);const wfh=isKathyWFH(rn,day);const dim=struct||ol;const role=slot.rn[rn];
+        return React.createElement("div",{key:rn,style:{display:"flex",alignItems:"center",gap:6,marginBottom:5,opacity:dim?.45:1}},
+          React.createElement("div",{style:{width:56,flexShrink:0}},
+            React.createElement("span",{style:{fontSize:13,fontWeight:600,color:"#334155"}},rn),
+            wfh&&React.createElement("span",{style:{display:"block",fontSize:9,color:"#94a3b8"}},"WFH Thu")
+          ),
+          React.createElement("div",{style:{display:"flex",alignItems:"center",gap:6,flex:1,minWidth:0}},
+            React.createElement(Badge,{role}),
+            dim?React.createElement("span",{style:{marginLeft:"auto",fontSize:11,color:"#e11d48",fontWeight:600}},struct?"N/A":"Time Off"):
+              React.createElement("select",{value:role||"Off",onChange:e=>onRC(day,shift,rn,e.target.value==="Off"?null:e.target.value),style:SEL},RN_ROLES.map(r=>React.createElement("option",{key:r},r)))
+          )
+        );
+      })
+    ),
+    React.createElement("div",{style:SEC},
+      React.createElement("span",{style:SL},"MEA Assignments"),
+      MEAS.map(mea=>React.createElement(MEARow,{key:mea,mea,meaData:slot.mea[mea],pl,isOut:isOnTimeOff(to,"mea",mea,day,shift),onChange:u=>onMC(day,shift,mea,u)}))
+    )
+  );
+}
+
+function App(){
+  const iCC=buildCC();
+  const [cc,setCC]=useState(iCC);
+  const [prov,setProv]=useState(()=>buildProviders(iCC));
+  const [asgn,setAsgn]=useState(buildAssignments);
+  const [to,setTO]=useState(buildTO);
+  const [conflicts,setConflicts]=useState([]);
+  const [history,setHistory]=useState(loadHistory);
+  const [wr,setWR]=useState({});
+  const [mwr,setMWR]=useState({});
+  const [gen,setGen]=useState(false);
+  const [day,setDay]=useState("Monday");
+  const [showT,setShowT]=useState(false);
+
+  const hCT=useCallback((d,s,f)=>{
+    setCC(prev=>{const nv=!prev[d][s][f];const u={...prev,[d]:{...prev[d],[s]:{...prev[d][s],[f]:nv}}};
+      if(f==="megan"){setProv(pp=>{const cur=pp[d][s];const wM=cur.includes("Megan Henry, NP")?cur:[...cur,"Megan Henry, NP"];const woM=cur.filter(p=>p!=="Megan Henry, NP");return{...pp,[d]:{...pp[d],[s]:nv?wM:woM}};});}
+      return u;});setGen(false);
+  },[]);
+  const hTO=useCallback((type,person,d,s)=>{setTO(prev=>({...prev,[type]:{...prev[type],[person]:{...prev[type][person],[d]:{...prev[type][person][d],[s]:!prev[type][person][d][s]}}}})});setGen(false);},[]);
+  const hPC=useCallback((d,s,u)=>{setProv(prev=>({...prev,[d]:{...prev[d],[s]:u}}));setGen(false);},[]);
+  const hRC=useCallback((d,s,rn,role)=>{setAsgn(prev=>({...prev,[d]:{...prev[d],[s]:{...prev[d][s],rn:{...prev[d][s].rn,[rn]:role}}}}));},[]);
+  const hMC=useCallback((d,s,mea,u)=>{setAsgn(prev=>({...prev,[d]:{...prev[d],[s]:{...prev[d][s],mea:{...prev[d][s].mea,[mea]:u}}}}));},[]);
+
+  const compWR=a=>{const r={};RNS.forEach(rn=>(r[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0}));const m={};MEAS.forEach(mea=>(m[mea]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0}));
+    DAYS.forEach(d=>SHIFTS.forEach(s=>{if(!clinicOpen(cc,d,s))return;RNS.forEach(rn=>{const role=a[d][s]?.rn[rn];if(role&&role!=="Off"&&role!=="Time Off"&&r[rn][role]!==undefined)r[rn][role]++;});MEAS.forEach(mea=>{const role=a[d][s]?.mea[mea]?.role;if(role&&role!=="Time Off"&&m[mea][role]!==undefined)m[mea][role]++;});}));
+    return{r,m};};
+
+  const hGen=()=>{const{assignments:na,weeklyRoles:r,meaWeeklyRoles:m}=generateSchedule(prov,history,to,cc);setAsgn(na);setWR(r);setMWR(m);setConflicts(detectConflicts(na,prov,to,cc));setGen(true);};
+  const hChk=()=>{setConflicts(detectConflicts(asgn,prov,to,cc));const{r,m}=compWR(asgn);setWR(r);setMWR(m);};
+  const hCommit=()=>{
+    const{r,m}=compWR(asgn);const bp={...(history.bpClinic||{})};const ms={...(history.meaShifts||{})};
+    RNS.forEach(rn=>{if(!bp[rn])bp[rn]=0;});MEAS.forEach(mea=>{if(!ms[mea])ms[mea]=0;});
+    DAYS.forEach(d=>SHIFTS.forEach(s=>{if(!clinicOpen(cc,d,s))return;RNS.forEach(rn=>{if(asgn[d][s]?.rn[rn]==="BP Clinic")bp[rn]++;});MEAS.forEach(mea=>{const role=asgn[d][s]?.mea[mea]?.role;if(role&&role!=="Time Off")ms[mea]++;});}));
+    const pm=history.meaRoles||{};const nm={};MEAS.forEach(mea=>{const p=pm[mea]||{};nm[mea]={"Provider MEA":(p["Provider MEA"]||0)+(m[mea]["Provider MEA"]||0),"Blood Draw":(p["Blood Draw"]||0)+(m[mea]["Blood Draw"]||0),Float:(p.Float||0)+(m[mea].Float||0),Admin:(p.Admin||0)+(m[mea].Admin||0)};});
+    const nh={weeks:history.weeks+1,bpClinic:bp,meaShifts:ms,meaRoles:nm,rnRoles:{}};
+    RNS.forEach(rn=>{const p=history.rnRoles?.[rn]||{};nh.rnRoles[rn]={Triage:(p.Triage||0)+(r[rn].Triage||0),Clinic:(p.Clinic||0)+(r[rn].Clinic||0),"BP Clinic":(p["BP Clinic"]||0)+(r[rn]["BP Clinic"]||0),Admin:(p.Admin||0)+(r[rn].Admin||0)};});
+    saveHistory(nh);setHistory(nh);alert("✓ Week committed to running totals.");
+  };
+  const hReset=()=>{const c=buildCC();setCC(c);setProv(buildProviders(c));setAsgn(buildAssignments());setTO(buildTO());setConflicts([]);setWR({});setMWR({});setGen(false);};
+  const hClear=()=>{if(confirm("Clear all history? Cannot be undone.")){const e={rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};saveHistory(e);setHistory(e);}};
+
+  const dyad=conflicts.filter(c=>c.isDyadBreak);const hard=conflicts.filter(c=>!c.isDyadBreak);
+  const wkC=hard.filter(c=>c.shift==="Weekly");const shC=hard.filter(c=>c.shift!=="Weekly");
+  const toc=[...RNS,...MEAS].reduce((t,p)=>{const type=RNS.includes(p)?"rn":"mea";return t+DAYS.reduce((d2,d3)=>d2+SHIFTS.reduce((s2,s3)=>s2+(isOnTimeOff(to,type,p,d3,s3)?1:0),0),0);},0);
+  const BTN=(style,onClick,label)=>React.createElement("button",{onClick,style:{fontSize:11,padding:"6px 10px",borderRadius:8,border:"1px solid transparent",fontWeight:600,cursor:"pointer",...style}},label);
+
+  return React.createElement("div",{style:{minHeight:"100vh",background:"#f8fafc"}},
+    React.createElement("div",{style:{background:"#fff",borderBottom:"1px solid #e2e8f0",padding:"10px 14px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:20,boxShadow:"0 1px 3px rgba(0,0,0,.06)"}},
+      React.createElement("div",null,
+        React.createElement("div",{style:{fontSize:17,fontWeight:700,color:"#0f172a"}},"Clinic Scheduler"),
+        React.createElement("div",{style:{fontSize:11,color:"#94a3b8",marginTop:1}},"Mon–Fri · AM & PM")
+      ),
+      React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:5,justifyContent:"flex-end"}},
+        BTN({background:"#fffbeb",color:"#92400e",border:"1px solid #fcd34d"},hChk,"Check"),
+        BTN({background:"#4f46e5",color:"#fff"},hGen,"✦ Generate"),
+        BTN({background:"#059669",color:"#fff"},hCommit,"✓ Commit"),
+        BTN({background:showT?"#334155":"#fff",color:showT?"#fff":"#475569",border:"1px solid #cbd5e1"},()=>setShowT(v=>!v),showT?"Hide Totals":"Totals"),
+        BTN({background:"#fff",color:"#475569",border:"1px solid #cbd5e1"},hReset,"Reset")
+      )
+    ),
+    React.createElement("div",{style:{maxWidth:860,margin:"0 auto",padding:"14px 10px",display:"flex",flexDirection:"column",gap:12}},
+      React.createElement(WeekSetupPanel,{cc,onToggle:hCT}),
+      React.createElement(TimeOffPanel,{to,onToggle:hTO,cc}),
+      toc>0&&!gen&&React.createElement("p",{style:{fontSize:11,color:"#e11d48",fontWeight:500}},`⚑ ${toc} time-off shift${toc!==1?"s":""} marked — tap ✦ Generate to apply.`),
+      hard.length>0&&React.createElement("div",{style:{borderRadius:12,border:"1px solid #fecaca",background:"#fef2f2",padding:12}},
+        React.createElement("p",{style:{fontSize:13,fontWeight:700,color:"#b91c1c",marginBottom:6}},`⚠ ${hard.length} Conflict${hard.length!==1?"s":""}`),
+        wkC.length>0&&React.createElement("div",null,React.createElement("p",{style:{fontSize:9,fontWeight:700,color:"#ef4444",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:3}},"Weekly"),wkC.map((c,i)=>React.createElement("p",{key:i,style:{fontSize:12,color:"#b91c1c",marginBottom:2}},`• ${c.msg}`))),
+        shC.length>0&&React.createElement("div",{style:{marginTop:6}},React.createElement("p",{style:{fontSize:9,fontWeight:700,color:"#ef4444",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:3}},"By Shift"),shC.map((c,i)=>React.createElement("p",{key:i,style:{fontSize:12,color:"#b91c1c",marginBottom:2}},React.createElement("b",null,`[${c.shift}] `),c.msg)))
+      ),
+      dyad.length>0&&React.createElement("div",{style:{borderRadius:12,border:"1px solid #fed7aa",background:"#fff7ed",padding:12}},
+        React.createElement("p",{style:{fontSize:13,fontWeight:700,color:"#c2410c",marginBottom:4}},`⚑ ${dyad.length} Dyad Break${dyad.length!==1?"s":""}`),
+        dyad.map((c,i)=>React.createElement("p",{key:i,style:{fontSize:12,color:"#c2410c",marginBottom:2}},React.createElement("b",null,`[${c.shift}] `),c.msg))
+      ),
+      gen&&conflicts.length===0&&React.createElement("div",{style:{borderRadius:12,border:"1px solid #a7f3d0",background:"#ecfdf5",padding:10,fontSize:13,color:"#065f46",fontWeight:600}},"✓ Schedule generated — no conflicts or dyad breaks."),
+      showT&&React.createElement(RunningTotals,{history,wr,mwr,onClear:hClear}),
+      React.createElement("div",{style:{display:"flex",gap:3,background:"#fff",border:"1px solid #e2e8f0",borderRadius:12,padding:4,width:"fit-content",boxShadow:"0 1px 2px rgba(0,0,0,.04)"}},
+        DAYS.map(d=>React.createElement("button",{key:d,onClick:()=>setDay(d),style:{fontSize:13,padding:"5px 12px",borderRadius:8,border:"none",fontWeight:700,background:day===d?"#4f46e5":"transparent",color:day===d?"#fff":"#64748b",cursor:"pointer"}},d.slice(0,3)))
+      ),
+      React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
+        SHIFTS.map(shift=>React.createElement("div",{key:shift},
+          React.createElement("div",{style:{display:"flex",alignItems:"center",gap:5,marginBottom:7}},
+            React.createElement("span",{style:{fontSize:13,fontWeight:700,color:"#1e293b"}},shift==="AM"?"Morning":"Afternoon"),
+            React.createElement("span",{style:{fontSize:10,fontWeight:700,padding:"2px 7px",borderRadius:9999,background:shift==="AM"?"#e0f2fe":"#ffedd5",color:shift==="AM"?"#0369a1":"#c2410c"}},shift),
+            !clinicOpen(cc,day,shift)&&React.createElement("span",{style:{fontSize:11,color:"#94a3b8"}},"— cancelled")
+          ),
+          React.createElement(ShiftCard,{day,shift,providers:prov,asgn,to,cc,onPC:hPC,onRC:hRC,onMC:hMC})
+        ))
+      ),
+      React.createElement("div",{style:{borderRadius:12,border:"1px solid #e2e8f0",background:"#fff",padding:10}},
+        React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:6}},
+          React.createElement("span",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",alignSelf:"center"}},"Roles"),
+          Object.entries(BADGE).filter(([k])=>k!=="Unassigned").map(([role,c])=>
+            React.createElement("span",{key:role,style:{fontSize:10,fontWeight:600,padding:"2px 7px",borderRadius:9999,border:"1px solid",background:c.bg,color:c.c,borderColor:c.b}},role)
+          )
+        ),
+        React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:8,fontSize:11,color:"#64748b",marginBottom:5}},
+          React.createElement("span",null,React.createElement("b",{style:{color:"#0d9488"}},"★")," preferred dyad"),
+          React.createElement("span",null,React.createElement("b",{style:{color:"#ea580c"}},"⚑")," dyad break"),
+          React.createElement("span",null,React.createElement("b",null,"WFH")," Kathy Thu")
+        ),
+        React.createElement("p",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:3}},"Preferred Dyads"),
+        React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:10,fontSize:10,color:"#94a3b8"}},
+          Object.entries(PREFERRED_DYAD).filter(([,v])=>v).map(([p,m])=>React.createElement("span",{key:p},`${p} → ${m}`))
+        )
+      ),
+      React.createElement("p",{style:{fontSize:11,color:"#94a3b8",textAlign:"center",paddingBottom:14}},"Press ",React.createElement("b",null,"✓ Commit")," to save this week to running totals.")
+    )
+  );
+}
+
+ReactDOM.render(React.createElement(App),document.getElementById("root"));
+</script>
+</body>
+</html>
