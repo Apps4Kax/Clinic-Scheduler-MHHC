@@ -112,7 +112,8 @@ var fc=0;while(mp.length>0&&fc<2){aM(mp[0],"Float");fc++;}
 mp.slice().sort(function(a,b){return(mwa[a]*4+msh[a])-(mwa[b]*4+msh[b]);}).forEach(function(mea){aM(mea,"Admin");});
 });});
 return{assignments:a,weeklyRoles:rwr,meaWeeklyRoles:mwr};
- function detect(a,ps,to,cc){
+}
+function detect(a,ps,to,cc){
 var cx=[];var rwa={};RNS.forEach(function(r){rwa[r]=0;});var rws={};RNS.forEach(function(r){rws[r]=0;});var mwa={};MEAS.forEach(function(m){mwa[m]=0;});var rdr={};RNS.forEach(function(rn){rdr[rn]={};});
 DAYS.forEach(function(day){SHIFTS.forEach(function(shift){
 if(!cOpen(cc,day,shift))return;
@@ -207,7 +208,9 @@ h("select",{className:"sel",value:role||"Unassigned",onChange:function(ev){var v
 !isOut&&role==="Provider MEA"&&pl.length>0&&h("div",{style:{marginLeft:72,display:"flex",flexWrap:"wrap",gap:4,marginTop:4}},
 pl.map(function(p){var sel=prov===p;var pf=DYAD[p];var pIP=pf===mea;var pIB=sel&&pf&&pf!==mea;return h("button",{key:p,className:"pbtn",style:{background:sel?(pIB?"#ffedd5":"#0d9488"):"#fff",color:sel?(pIB?"#9a3412":"#fff"):"#64748b",borderColor:sel?(pIB?"#fed7aa":"#0d9488"):"#cbd5e1"},onClick:function(){onChange({role:role,provider:prov===p?null:p});}},( pIP&&sel?"★ ":pIB?"⚑ ":"")+p);}),
 !prov&&h("span",{style:{fontSize:10,color:"#f59e0b"}},"Select provider"),
-prov&&DYAD[prov]&&DYAD[prov]!==mea&&h("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad function ShiftCard(props){
+prov&&DYAD[prov]&&DYAD[prov]!==mea&&h("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad break")
+));}
+function ShiftCard(props){
 var day=props.day,shift=props.shift,prov=props.prov,asgn=props.asgn,to=props.to,cc=props.cc,onPC=props.onPC,onRC=props.onRC,onMC=props.onMC;
 var io=cOpen(cc,day,shift);var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);var slot=asgn[day][shift];var pl=prov[day][shift];
 var isMD=day==="Tuesday"&&shift==="PM";var bdE=shift==="AM"&&["Monday","Wednesday","Friday"].indexOf(day)>=0;var bpE=(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM");
