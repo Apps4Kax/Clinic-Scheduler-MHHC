@@ -5,16 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Clinic Scheduler"/>
-  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD1UlEQVR4nO3aPY5bRxSEUa6uU23agTfidegnsDGwRhJn2GTdrncK+GI23j0hb1/WP19vA/fjXZpd2siopY8h4B9a+uMqX9rglqU/ouaVNvmppT+a5pc2etfSH0nnlTb77tIfReeXNvzf0h9CPYGsymBWXTCrLphVF8yqC2bVBbPqgll1Aa2qYFZdMKsuoFUVzKoLaFUFs+oCWlXBrLqAVlUwqy6gVRXQqgpoVQWz6gJaVQGtqoBWVUCrKqBVFdCqCmhVBbOqAlpVAa2qgFZVQKsqoFUV0KoKaFUFtKoC+nsfmffNDug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TepI0Pa6pW8NtG1d+tZA29albw20bV361kDb1qVvDbRtXfrWQNvWpW8NtG1d+tZA29albw20bV361kDb1qVvDbRtXfrWQNvWpW8NtG1d+tZA29albw20bV361kDb1qVvDbRtXfrWQNvWpW8NtG1d+tZA29albw20bV361kDb1qVvfQnQf//1VS8qfWugBfRppY98pdK3BlpAn1b6yFcqfWugBfRppY98pdK3BlpAn1b6yFcqfWugBfRp3XuMj2zH8Rt/L31roMuBAQ10FTCgga4CBjTQVcCABroKGNBAVwEDGugqYEADXQUMaKCrgAENdBUwoC8MWo+XvjXQAvq00ke+UulbAy2gTyt95CuVvjXQAvq00ke+UulbAy2gTyt95CuVvjXQAvq00ke+UulbA/2mxv9WvPr30rcGuhwY0EBXAQMa6CpgQANdBQxooKuAAQ10FTCgga4CBjTQVcCABroKGNBAVwED+sKg9XjpWwMtoE8rfeQrlb410AL6tNJHvlLpWwMtoE8rfeQrlb410AL6tNJHvlLpWwMtoKWWgFZVtx9LP0LaFdCqCmhVBbSqAlpVAa2qgFZVQKuq279LP0R6tNvbpR8jPRrQqgpoVXX7/9IPkj7bT5iB1sm9CxpqndgvMQOtE/staKh1Un/EDLRO6i7QUOuE7sYMtE7oQ6Ch1uQ+jBlqTe3TmIHWxB4CDbUm9TBmqDWlbZihVrrtmKFWqqdhhlqv7umYodarehlmqPXsXo4ZbD2jKOS3S38InV/a8LtLfxSdV9rsXUt/JM0vbfRTS380zSttcsvSH1H50gafuvTHVSfgb88A3Y/TS2bvAAAAA
-  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0iIzRmNDZlNSIvPgogIDx0ZXh0IHg9IjkwIiB5PSIxMzAiIGZvbnQtc2l6ZT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXBwbGUgQ29sb3IgRW1vamksU2Vnb2UgVUkgRW1vamksTm90byBDb2xvciBFbW9qaSI+8J+XkzwvdGV4dD4KPC9zdmc+"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <title>Clinic Scheduler</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f8fafc;}
-button,select,input{font-family:inherit;}
+button,select,input,textarea{font-family:inherit;}
 .hdr{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;box-shadow:0 1px 3px rgba(0,0,0,.06);}
 .h1{font-size:17px;font-weight:700;color:#0f172a;}
 .sub{font-size:11px;color:#94a3b8;margin-top:2px;}
@@ -44,6 +41,7 @@ button,select,input{font-family:inherit;}
 .tbl th{padding:5px 8px;font-size:9px;font-weight:700;color:#94a3b8;text-transform:uppercase;background:#f8fafc;text-align:center;}
 .tbl td{padding:5px 8px;text-align:center;border-top:1px solid #f8fafc;}
 .scrl{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.export-box{width:100%;height:320px;border:1px solid #e2e8f0;border-radius:8px;padding:10px;font-size:12px;line-height:1.6;color:#334155;background:#f8fafc;resize:none;}
 </style>
 </head>
 <body>
@@ -57,9 +55,9 @@ var RN_SHIFTS={Kathy:7,Yanna:9,Maria:9,Nina:9};
 var STRUCT={Kathy:["Monday"]};
 var PROVIDERS=["Dr. Ann Kim","Dr. Nate Kim","Dr. Lew","Dr. Ordonez","Dr. Ghorayeb","Dr. Patanwala","Linda Lor, NP","Megan Henry, NP"];
 var DYAD={"Dr. Ann Kim":"Lolita","Dr. Nate Kim":"Brie","Dr. Ordonez":"Yajari","Dr. Ghorayeb":"Sienna","Dr. Patanwala":"Yessenia","Dr. Lew":null,"Linda Lor, NP":null,"Megan Henry, NP":null};
-var RN_ROLES=["Triage","Clinic","BP Clinic","Admin","Off"];
-var MEA_ROLES=["Provider MEA","Blood Draw","Float","Admin","Unassigned"];
-var BS={Triage:{bg:"#ede9fe",c:"#5b21b6",b:"#ddd6fe"},Clinic:{bg:"#dbeafe",c:"#1e40af",b:"#bfdbfe"},"BP Clinic":{bg:"#fce7f3",c:"#9d174d",b:"#fbcfe8"},Admin:{bg:"#fef3c7",c:"#92400e",b:"#fde68a"},Off:{bg:"#f1f5f9",c:"#94a3b8",b:"#e2e8f0"},"Time Off":{bg:"#fff1f2",c:"#e11d48",b:"#fecdd3"},"Provider MEA":{bg:"#ccfbf1",c:"#115e59",b:"#99f6e4"},"Blood Draw":{bg:"#fee2e2",c:"#991b1b",b:"#fecaca"},Float:{bg:"#e0e7ff",c:"#3730a3",b:"#c7d2fe"},Unassigned:{bg:"#f9fafb",c:"#9ca3af",b:"#f3f4f6"}};
+var RN_ROLES=["Triage","Clinic","BP Clinic","Admin","Special Assignment","Off"];
+var MEA_ROLES=["Provider MEA","Blood Draw","Float","Admin","Special Assignment","Unassigned"];
+var BS={Triage:{bg:"#ede9fe",c:"#5b21b6",b:"#ddd6fe"},Clinic:{bg:"#dbeafe",c:"#1e40af",b:"#bfdbfe"},"BP Clinic":{bg:"#fce7f3",c:"#9d174d",b:"#fbcfe8"},Admin:{bg:"#fef3c7",c:"#92400e",b:"#fde68a"},"Special Assignment":{bg:"#f0fdf4",c:"#166534",b:"#bbf7d0"},Off:{bg:"#f1f5f9",c:"#94a3b8",b:"#e2e8f0"},"Time Off":{bg:"#fff1f2",c:"#e11d48",b:"#fecdd3"},"Provider MEA":{bg:"#ccfbf1",c:"#115e59",b:"#99f6e4"},"Blood Draw":{bg:"#fee2e2",c:"#991b1b",b:"#fecaca"},Float:{bg:"#e0e7ff",c:"#3730a3",b:"#c7d2fe"},Unassigned:{bg:"#f9fafb",c:"#9ca3af",b:"#f3f4f6"}};
 function isSU(rn,day){return(STRUCT[rn]||[]).indexOf(day)>=0;}
 function isMegan(cc,day,shift){return day==="Tuesday"&&shift==="PM"&&cc[day][shift].megan!==false;}
 function cOpen(cc,day,shift){return cc[day][shift].open!==false;}
@@ -68,17 +66,16 @@ function cBP(cc,day,shift){return cc[day][shift].bpClinic===true;}
 function isWFH(rn,day){return rn==="Kathy"&&day==="Thursday";}
 function isTO(to,type,name,day,shift){return!!(to[type]&&to[type][name]&&to[type][name][day]&&to[type][name][day][shift]);}
 function isTU(to,rn,day,shift){return isSU(rn,day)||isTO(to,"rn",rn,day,shift);}
-var SK="clinic-v6";
+var SK="clinic-v7";
 function loadH(){try{var r=localStorage.getItem(SK);return r?JSON.parse(r):{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}catch(x){return{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}}
 function saveH(h){try{localStorage.setItem(SK,JSON.stringify(h));}catch(x){}}
 function mkCC(){var c={};DAYS.forEach(function(day){c[day]={};SHIFTS.forEach(function(shift){c[day][shift]={open:!(day==="Wednesday"&&shift==="PM"),bloodDraw:shift==="AM"&&["Monday","Wednesday","Friday"].indexOf(day)>=0,bpClinic:(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM"),megan:day==="Tuesday"&&shift==="PM"};});});return c;}
 function mkProv(cc){var p={};DAYS.forEach(function(day){p[day]={};SHIFTS.forEach(function(shift){p[day][shift]=isMegan(cc,day,shift)?["Megan Henry, NP"]:[];});});return p;}
 function mkAsgn(){var a={};DAYS.forEach(function(day){a[day]={};SHIFTS.forEach(function(shift){a[day][shift]={rn:{},mea:{}};RNS.forEach(function(rn){a[day][shift].rn[rn]=null;});MEAS.forEach(function(mea){a[day][shift].mea[mea]={role:null,provider:null};});});});return a;}
 function mkTO(){var t={rn:{},mea:{}};RNS.forEach(function(rn){t.rn[rn]={};DAYS.forEach(function(day){t.rn[rn][day]={AM:false,PM:false};});});MEAS.forEach(function(mea){t.mea[mea]={};DAYS.forEach(function(day){t.mea[mea][day]={AM:false,PM:false};});});return t;}
+function buildExport(as,pv,cc){var lines=[];DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;var slot=as[day][shift];var hasContent=false;RNS.forEach(function(rn){if(slot.rn[rn]&&slot.rn[rn]!=="Off"&&slot.rn[rn]!=="Time Off")hasContent=true;});MEAS.forEach(function(mea){if(slot.mea[mea]&&slot.mea[mea].role&&slot.mea[mea].role!=="Time Off"&&slot.mea[mea].role!=="Unassigned")hasContent=true;});if(!hasContent)return;lines.push(day+" "+shift);RNS.forEach(function(rn){var role=slot.rn[rn];if(!role||role==="Off"||role==="Time Off")return;lines.push(rn+" - "+role);});lines.push("");MEAS.forEach(function(mea){var md=slot.mea[mea];if(!md||!md.role||md.role==="Time Off"||md.role==="Unassigned")return;if(md.role==="Provider MEA"&&md.provider){lines.push(mea+" - provider: "+md.provider);}else{lines.push(mea+" - "+md.role.toLowerCase());}});lines.push("");});});return lines.join("\n").trim();}
 function generate(ps,hist,to,cc){
-var a=mkAsgn();
-var rsa={};RNS.forEach(function(rn){rsa[rn]=0;});
-var rbd={};RNS.forEach(function(rn){rbd[rn]={};});
+var a=mkAsgn();var rsa={};RNS.forEach(function(rn){rsa[rn]=0;});var rbd={};RNS.forEach(function(rn){rbd[rn]={};});
 var rrh={};RNS.forEach(function(rn){rrh[rn]=Object.assign({Triage:0,Clinic:0,"BP Clinic":0,Admin:0},(hist.rnRoles&&hist.rnRoles[rn])||{});});
 var bph={};RNS.forEach(function(rn){bph[rn]=(hist.bpClinic&&hist.bpClinic[rn])||0;});
 var rwr={};RNS.forEach(function(rn){rwr[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0};});
@@ -87,13 +84,13 @@ var mws={};MEAS.forEach(function(m){mws[m]=0;});
 var mwr={};MEAS.forEach(function(m){mwr[m]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0};});
 var mwa={};MEAS.forEach(function(m){mwa[m]=0;});
 var mwb={};MEAS.forEach(function(m){mwb[m]=0;});
-function pool(day,shift){return RNS.filter(function(rn){if(isTU(to,rn,day,shift))return false;if(rsa[rn]>=RN_SHIFTS[rn])return false;if(isWFH(rn,day)&&shift==="AM")return false;return true;}).sort(function(a,b){return rsa[a]-rsa[b];});}
+function pool(day,shift){return RNS.filter(function(rn){if(isTU(to,rn,day,shift))return false;if(rsa[rn]>=RN_SHIFTS[rn])return false;if(isWFH(rn,day)&&shift==="AM")return false;if(isWFH(rn,day)&&shift==="PM")return false;return true;}).sort(function(a,b){return rsa[a]-rsa[b];});}
 function aRN(slot,rn,role,day){slot.rn[rn]=role;if(role!=="Off"){rsa[rn]++;if(rwr[rn][role]!==undefined)rwr[rn][role]++;rbd[rn][day]=role;}}
 DAYS.forEach(function(day){["AM","PM"].forEach(function(shift){
 if(!cOpen(cc,day,shift))return;
 var slot=a[day][shift];var pl=ps[day][shift];var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
 RNS.forEach(function(rn){if(isSU(rn,day))slot.rn[rn]="Off";else if(isTO(to,"rn",rn,day,shift))slot.rn[rn]="Time Off";else if(isWFH(rn,day)&&shift==="AM")slot.rn[rn]="Off";else slot.rn[rn]=null;});
-if(isWFH("Kathy",day)&&shift==="PM"&&!isTO(to,"rn","Kathy",day,shift)&&rsa["Kathy"]<RN_SHIFTS["Kathy"])aRN(slot,"Kathy","Admin",day);
+if(isWFH("Kathy",day)&&shift==="PM"){if(!isTO(to,"rn","Kathy",day,shift)&&rsa["Kathy"]<RN_SHIFTS["Kathy"]){aRN(slot,"Kathy","Admin",day);}}
 var p=pool(day,shift);
 function amR(rn){return shift==="PM"?(rbd[rn]&&rbd[rn][day])||null:null;}
 if(hasBP){var bpc=p.filter(function(rn){return amR(rn)!=="BP Clinic";}).sort(function(a,b){return((bph[a]||0)+rwr[a]["BP Clinic"]*10)-((bph[b]||0)+rwr[b]["BP Clinic"]*10);});if(bpc.length>0){aRN(slot,bpc[0],"BP Clinic",day);p=p.filter(function(r){return r!==bpc[0];});}}
@@ -115,24 +112,35 @@ var fc=0;while(mp.length>0&&fc<2){aM(mp[0],"Float");fc++;}
 mp.slice().sort(function(a,b){return(mwa[a]*4+msh[a])-(mwa[b]*4+msh[b]);}).forEach(function(mea){aM(mea,"Admin");});
 });});
 return{assignments:a,weeklyRoles:rwr,meaWeeklyRoles:mwr};
-}
-function detect(a,ps,to,cc){
+ function detect(a,ps,to,cc){
 var cx=[];var rwa={};RNS.forEach(function(r){rwa[r]=0;});var rws={};RNS.forEach(function(r){rws[r]=0;});var mwa={};MEAS.forEach(function(m){mwa[m]=0;});var rdr={};RNS.forEach(function(rn){rdr[rn]={};});
 DAYS.forEach(function(day){SHIFTS.forEach(function(shift){
 if(!cOpen(cc,day,shift))return;
 var slot=a[day][shift];var pl=ps[day][shift];var lbl=day+" "+shift;var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
 var act=RNS.filter(function(rn){var r=slot.rn[rn];return r&&r!=="Off"&&r!=="Time Off";});
 var roles=act.map(function(rn){return slot.rn[rn];});
-var tc=roles.filter(function(r){return r==="Triage";}).length;var clc=roles.filter(function(r){return r==="Clinic";}).length;var bpc=roles.filter(function(r){return r==="BP Clinic";}).length;var ac=roles.filter(function(r){return r==="Admin";}).length;
-if(tc===0)cx.push({shift:lbl,msg:"No RN assigned to Triage."});if(tc>1)cx.push({shift:lbl,msg:"More than one RN in Triage."});if(clc<1)cx.push({shift:lbl,msg:"No RN assigned to Clinic."});
-if(hasBP&&bpc===0)cx.push({shift:lbl,msg:"BP Clinic active but no RN assigned."});if(!hasBP&&bpc>0)cx.push({shift:lbl,msg:"BP Clinic RN assigned but cancelled."});
+var tc=roles.filter(function(r){return r==="Triage";}).length;
+var clc=roles.filter(function(r){return r==="Clinic";}).length;
+var bpc=roles.filter(function(r){return r==="BP Clinic";}).length;
+var ac=roles.filter(function(r){return r==="Admin";}).length;
+if(tc===0)cx.push({shift:lbl,msg:"No RN assigned to Triage."});
+if(tc>1)cx.push({shift:lbl,msg:"More than one RN in Triage."});
+if(clc<1)cx.push({shift:lbl,msg:"No RN assigned to Clinic."});
+if(hasBP&&bpc===0)cx.push({shift:lbl,msg:"BP Clinic active but no RN assigned."});
+if(!hasBP&&bpc>0)cx.push({shift:lbl,msg:"BP Clinic RN assigned but cancelled."});
 if(ac>0&&(tc===0||clc===0))cx.push({shift:lbl,msg:"Admin assigned but clinical coverage incomplete."});
-act.forEach(function(rn){var role=slot.rn[rn];if(!rdr[rn][day])rdr[rn][day]=role;else if(rdr[rn][day]===role)cx.push({shift:lbl,msg:rn+" has "+role+" AM and PM on "+day+"."});});
+act.forEach(function(rn){var role=slot.rn[rn];if(role==="Special Assignment")return;if(!rdr[rn][day])rdr[rn][day]=role;else if(rdr[rn][day]===role)cx.push({shift:lbl,msg:rn+" has "+role+" AM and PM on "+day+"."});});
 RNS.forEach(function(rn){var role=slot.rn[rn];if(isTO(to,"rn",rn,day,shift))return;if(role&&role!=="Off"&&role!=="Time Off"){rws[rn]++;if(role==="Admin")rwa[rn]++;}});
-var actM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role&&slot.mea[m].role!=="Time Off";});var mr=actM.map(function(m){return slot.mea[m].role;});
-var bdc=mr.filter(function(r){return r==="Blood Draw";}).length;var flc=mr.filter(function(r){return r==="Float";}).length;var pM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role==="Provider MEA";});
-if(hasBD&&bdc===0)cx.push({shift:lbl,msg:"Blood Draw active but no MEA assigned."});if(!hasBD&&bdc>0)cx.push({shift:lbl,msg:"Blood Draw MEA assigned but cancelled."});if(flc>2)cx.push({shift:lbl,msg:flc+" Float MEAs — max 2."});
-var cp=pM.map(function(m){return slot.mea[m].provider;}).filter(Boolean);pl.forEach(function(pv){if(cp.indexOf(pv)<0)cx.push({shift:lbl,msg:pv+" has no MEA."});});
+var actM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role&&slot.mea[m].role!=="Time Off";});
+var mr=actM.map(function(m){return slot.mea[m].role;});
+var bdc=mr.filter(function(r){return r==="Blood Draw";}).length;
+var flc=mr.filter(function(r){return r==="Float";}).length;
+var pM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role==="Provider MEA";});
+if(hasBD&&bdc===0)cx.push({shift:lbl,msg:"Blood Draw active but no MEA assigned."});
+if(!hasBD&&bdc>0)cx.push({shift:lbl,msg:"Blood Draw MEA assigned but cancelled."});
+if(flc>2)cx.push({shift:lbl,msg:flc+" Float MEAs — max 2."});
+var cp=pM.map(function(m){return slot.mea[m].provider;}).filter(Boolean);
+pl.forEach(function(pv){if(cp.indexOf(pv)<0)cx.push({shift:lbl,msg:pv+" has no MEA."});});
 pM.forEach(function(mea){var pv=slot.mea[mea].provider;if(pv){var pr=DYAD[pv];if(pr&&pr!==mea)cx.push({shift:lbl,msg:pv+" with "+mea+" (preferred: "+pr+").",isDyad:true});}});
 MEAS.forEach(function(mea){if(slot.mea[mea]&&slot.mea[mea].role==="Admin")mwa[mea]++;});
 });});
@@ -166,9 +174,8 @@ h("div",{className:"scrl"},h("table",{style:{fontSize:11,borderCollapse:"collaps
 h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingRight:8,minWidth:76}}),cols.map(function(col){return h("th",{key:col.d+col.s,style:{textAlign:"center",padding:"0 3px 4px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap"}},h("div",null,col.d.slice(0,3)),h("div",{style:{color:col.s==="AM"?"#0ea5e9":"#f97316"}},col.s));}))),
 h("tbody",null,g.ppl.map(function(person){return h("tr",{key:person,style:{borderTop:"1px solid #fecdd3"}},
 h("td",{style:{padding:"5px 8px 5px 0",fontWeight:600,color:"#334155",whiteSpace:"nowrap"}},person,g.type==="rn"&&person==="Kathy"&&h("span",{style:{display:"block",fontSize:9,color:"#94a3b8",fontWeight:400}},"WFH Thu")),
-cols.map(function(col){var su=g.type==="rn"&&isSU(person,col.d);var chk=su||isTO(to,g.type,person,col.d,col.s);return h("td",{key:col.d+col.s,style:{textAlign:"center",padding:"5px 3px"}},su?h("span",{style:{color:"#cbd5e1"}},"✕"):h("input",{type:"checkbox",checked:chk,onChange:function(){tog(g.type,person,col.d,col.s);},style:{width:15,height:15,accentColor:"#e11d48"}}));}));}))
-))
-);}),h("p",{style:{fontSize:9,color:"#fda4af",fontStyle:"italic",paddingTop:4}},"✕=permanent. Kathy Thu WFH can still be marked time-off."))
+cols.map(function(col){var su=g.type==="rn"&&isSU(person,col.d);var chk=su||isTO(to,g.type,person,col.d,col.s);return h("td",{key:col.d+col.s,style:{textAlign:"center",padding:"5px 3px"}},su?h("span",{style:{color:"#cbd5e1"}},"✕"):h("input",{type:"checkbox",checked:chk,onChange:function(){tog(g.type,person,col.d,col.s);},style:{width:15,height:15,accentColor:"#e11d48"}}));})
+);})))),h("p",{style:{fontSize:9,color:"#fda4af",fontStyle:"italic",paddingTop:4}},"✕=permanent. Kathy Thu WFH can still be marked time-off."))
 );}
 function Totals(props){
 var hist=props.hist,wr=props.wr,mwr=props.mwr,onClear=props.onClear,tab=props.tab,setTab=props.setTab;
@@ -178,14 +185,15 @@ h("div",{style:{padding:"8px 12px",borderBottom:"1px solid #f1f5f9",display:"fle
 h("div",{style:{display:"flex",gap:4}},["rn","mea"].map(function(t){return h("button",{key:t,className:"btn",style:{background:tab===t?"#4f46e5":"transparent",color:tab===t?"#fff":"#64748b"},onClick:function(){setTab(t);}},t==="rn"?"RN Totals":"MEA Totals");})),
 h("div",{style:{display:"flex",gap:8,alignItems:"center"}},h("span",{style:{fontSize:11,color:"#94a3b8"}},hist.weeks+" wk"+(hist.weeks!==1?"s":"")),h("button",{onClick:onClear,style:{fontSize:11,color:"#ef4444",background:"none",border:"none",textDecoration:"underline",cursor:"pointer"}},"Clear"))
 ),
-h("div",{className:"scrl"},tab==="rn"?h("table",{className:"tbl"},
+h("div",{className:"scrl"},
+tab==="rn"?h("table",{className:"tbl"},
 h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingLeft:12}},"RN"),rnR.map(function(r){return h("th",{key:r},r);}),h("th",{style:{color:"#6366f1"}},"This Wk"))),
 h("tbody",null,RNS.map(function(rn){var hv=(hist.rnRoles&&hist.rnRoles[rn])||{};var wv=(wr&&wr[rn])||{};return h("tr",{key:rn},h("td",{style:{textAlign:"left",paddingLeft:12,fontWeight:600,color:"#334155",borderTop:"1px solid #f8fafc"}},rn),rnR.map(function(role){return h("td",{key:role,style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},(hv[role]||0)),(wv[role]||0)>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wv[role]));}),h("td",{style:{color:"#4f46e5",fontWeight:700,borderTop:"1px solid #f8fafc"}},Object.keys(wv).reduce(function(s,k){return s+wv[k];},0)));}))
 ):h("table",{className:"tbl"},
 h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingLeft:12}},"MEA"),h("th",null,"Total"),mR.map(function(r){return h("th",{key:r},r);}),h("th",{style:{color:"#6366f1"}},"This Wk"))),
 h("tbody",null,MEAS.map(function(mea){var hs=(hist.meaShifts&&hist.meaShifts[mea])||0;var hr=(hist.meaRoles&&hist.meaRoles[mea])||{};var wv=(mwr&&mwr[mea])||{};var wt=Object.keys(wv).reduce(function(s,k){return s+wv[k];},0);return h("tr",{key:mea},h("td",{style:{textAlign:"left",paddingLeft:12,fontWeight:600,color:"#334155",borderTop:"1px solid #f8fafc"}},mea),h("td",{style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},hs),wt>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wt)),mR.map(function(role){return h("td",{key:role,style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},(hr[role]||0)),(wv[role]||0)>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wv[role]));}),h("td",{style:{color:"#4f46e5",fontWeight:700,borderTop:"1px solid #f8fafc"}},wt));}))
-))
-);}
+));}
+function ExportPanel(props){var text=props.text,open=props.open,setOpen=props.setOpen;return h("div",{className:"pnl-wht"},h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #e2e8f0":"none"},onClick:function(){setOpen(!open);}},h("div",{style:{display:"flex",alignItems:"center",gap:8}},h("span",{style:{fontSize:13,fontWeight:700,color:"#334155"}},"📋 Export Schedule"),h("span",{style:{fontSize:11,color:"#94a3b8"}},"Copy as text")),h("span",{style:{fontSize:11,fontWeight:700,color:"#94a3b8"}},open?"▲":"▼")),open&&h("div",{style:{padding:"0 12px 12px"}},h("textarea",{className:"export-box",readOnly:true,value:text}),h("p",{style:{fontSize:10,color:"#94a3b8",marginTop:6}},"Tap inside the text box, then select all and copy.")));}
 function MEARow(props){
 var mea=props.mea,md=props.md,pl=props.pl,onChange=props.onChange,isOut=props.isOut;
 var role=(md&&md.role)||null;var prov=(md&&md.provider)||null;
@@ -199,9 +207,7 @@ h("select",{className:"sel",value:role||"Unassigned",onChange:function(ev){var v
 !isOut&&role==="Provider MEA"&&pl.length>0&&h("div",{style:{marginLeft:72,display:"flex",flexWrap:"wrap",gap:4,marginTop:4}},
 pl.map(function(p){var sel=prov===p;var pf=DYAD[p];var pIP=pf===mea;var pIB=sel&&pf&&pf!==mea;return h("button",{key:p,className:"pbtn",style:{background:sel?(pIB?"#ffedd5":"#0d9488"):"#fff",color:sel?(pIB?"#9a3412":"#fff"):"#64748b",borderColor:sel?(pIB?"#fed7aa":"#0d9488"):"#cbd5e1"},onClick:function(){onChange({role:role,provider:prov===p?null:p});}},( pIP&&sel?"★ ":pIB?"⚑ ":"")+p);}),
 !prov&&h("span",{style:{fontSize:10,color:"#f59e0b"}},"Select provider"),
-prov&&DYAD[prov]&&DYAD[prov]!==mea&&h("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad break")
-));}
-function ShiftCard(props){
+prov&&DYAD[prov]&&DYAD[prov]!==mea&&h("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad function ShiftCard(props){
 var day=props.day,shift=props.shift,prov=props.prov,asgn=props.asgn,to=props.to,cc=props.cc,onPC=props.onPC,onRC=props.onRC,onMC=props.onMC;
 var io=cOpen(cc,day,shift);var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);var slot=asgn[day][shift];var pl=prov[day][shift];
 var isMD=day==="Tuesday"&&shift==="PM";var bdE=shift==="AM"&&["Monday","Wednesday","Friday"].indexOf(day)>=0;var bpE=(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM");
@@ -216,8 +222,7 @@ h("div",{className:"csec"},h("span",{className:"slbl"},"RN Assignments"),RNS.map
 h("div",{className:"csec"},h("span",{className:"slbl"},"MEA Assignments"),MEAS.map(function(mea){return h(MEARow,{key:mea,mea:mea,md:slot.mea[mea],pl:pl,isOut:isTO(to,"mea",mea,day,shift),onChange:function(u){onMC(day,shift,mea,u);}});}))
 );}
 function App(){
-var ic=mkCC();
-var S=useState;
+var ic=mkCC();var S=useState;
 var ccS=S(ic);var cc=ccS[0];var setCC=ccS[1];
 var pvS=S(function(){return mkProv(ic);});var pv=pvS[0];var setPV=pvS[1];
 var asS=S(mkAsgn);var as=asS[0];var setAS=asS[1];
@@ -232,6 +237,7 @@ var stS=S(false);var st=stS[0];var setST=stS[1];
 var ttS=S("rn");var tt=ttS[0];var setTT=ttS[1];
 var woS=S(true);var wo=woS[0];var setWO=woS[1];
 var tpS=S(false);var tp=tpS[0];var setTP=tpS[1];
+var exS=S(false);var ex=exS[0];var setEX=exS[1];
 function updCC(d,s,f){setCC(function(prev){var nd=Object.assign({},prev[d]);nd[s]=Object.assign({},prev[d][s]);nd[s][f]=!nd[s][f];var nu=Object.assign({},prev);nu[d]=nd;if(f==="megan"){var nv=nd[s][f];setPV(function(pp){var np=Object.assign({},pp[d]);np[s]=nv?(pp[d][s].indexOf("Megan Henry, NP")>=0?pp[d][s]:pp[d][s].concat(["Megan Henry, NP"])):pp[d][s].filter(function(p){return p!=="Megan Henry, NP";});var npp=Object.assign({},pp);npp[d]=np;return npp;});}return nu;});setGN(false);}
 function updTO(type,person,d,s){setTO(function(prev){var nt=Object.assign({},prev);var ng=Object.assign({},prev[type]);var np=Object.assign({},prev[type][person]);var nd=Object.assign({},prev[type][person][d]);nd[s]=!nd[s];np[d]=nd;ng[person]=np;nt[type]=ng;return nt;});setGN(false);}
 function updPC(d,s,u){setPV(function(prev){var np=Object.assign({},prev[d]);np[s]=u;var npp=Object.assign({},prev);npp[d]=np;return npp;});setGN(false);}
@@ -243,6 +249,7 @@ function doChk(){setCX(detect(as,pv,to,cc));var res=cWR(as);setWR(res.r);setMW(r
 function doCommit(){var res=cWR(as);var r=res.r;var m=res.m;var bp=Object.assign({},(hi.bpClinic||{}));var ms=Object.assign({},(hi.meaShifts||{}));RNS.forEach(function(rn){if(!bp[rn])bp[rn]=0;});MEAS.forEach(function(mea){if(!ms[mea])ms[mea]=0;});DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;RNS.forEach(function(rn){if(as[day][shift].rn[rn]==="BP Clinic")bp[rn]++;});MEAS.forEach(function(mea){var role=as[day][shift].mea[mea]&&as[day][shift].mea[mea].role;if(role&&role!=="Time Off")ms[mea]++;});});});var pm=hi.meaRoles||{};var nm={};MEAS.forEach(function(mea){var p=pm[mea]||{};nm[mea]={"Provider MEA":(p["Provider MEA"]||0)+(m[mea]["Provider MEA"]||0),"Blood Draw":(p["Blood Draw"]||0)+(m[mea]["Blood Draw"]||0),Float:(p.Float||0)+(m[mea].Float||0),Admin:(p.Admin||0)+(m[mea].Admin||0)};});var nh={weeks:hi.weeks+1,bpClinic:bp,meaShifts:ms,meaRoles:nm,rnRoles:{}};RNS.forEach(function(rn){var p=(hi.rnRoles&&hi.rnRoles[rn])||{};nh.rnRoles[rn]={Triage:(p.Triage||0)+(r[rn].Triage||0),Clinic:(p.Clinic||0)+(r[rn].Clinic||0),"BP Clinic":(p["BP Clinic"]||0)+(r[rn]["BP Clinic"]||0),Admin:(p.Admin||0)+(r[rn].Admin||0)};});saveH(nh);setHI(nh);alert("✓ Week committed to running totals.");}
 function doReset(){var c=mkCC();setCC(c);setPV(mkProv(c));setAS(mkAsgn());setTO(mkTO());setCX([]);setWR({});setMW({});setGN(false);}
 function doClear(){if(confirm("Clear all history?")){var e={rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};saveH(e);setHI(e);}}
+var exportText=buildExport(as,pv,cc);
 var dyad=cx.filter(function(c){return c.isDyad;});var hard=cx.filter(function(c){return!c.isDyad;});var wkC=hard.filter(function(c){return c.shift==="Weekly";});var shC=hard.filter(function(c){return c.shift!=="Weekly";});
 var toc=[].concat(RNS,MEAS).reduce(function(t,p){var type=RNS.indexOf(p)>=0?"rn":"mea";return t+DAYS.reduce(function(d2,d3){return d2+SHIFTS.reduce(function(s2,s3){return s2+(isTO(to,type,p,d3,s3)?1:0);},0);},0);},0);
 return h("div",null,
@@ -255,6 +262,7 @@ hard.length>0&&h("div",{className:"pnl-red"},h("p",{style:{fontSize:13,fontWeigh
 dyad.length>0&&h("div",{className:"pnl-ora"},h("p",{style:{fontSize:13,fontWeight:700,color:"#c2410c",marginBottom:4}},"⚑ "+dyad.length+" Dyad Break"+(dyad.length!==1?"s":"")),dyad.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#c2410c",marginBottom:2}},h("b",null,"["+c.shift+"] "),c.msg);})),
 gn&&cx.length===0&&h("div",{className:"pnl-grn"},"✓ Schedule generated — no conflicts or dyad breaks."),
 st&&h(Totals,{hist:hi,wr:wr,mwr:mw,onClear:doClear,tab:tt,setTab:setTT}),
+h(ExportPanel,{text:exportText,open:ex,setOpen:setEX}),
 h("div",{className:"tabs"},DAYS.map(function(d){return h("button",{key:d,className:"tab",style:{background:d===dy?"#4f46e5":"transparent",color:d===dy?"#fff":"#64748b"},onClick:function(){setDY(d);}},d.slice(0,3));})),
 h("div",{className:"g2"},SHIFTS.map(function(shift){return h("div",{key:shift},h("div",{style:{display:"flex",alignItems:"center",gap:5,marginBottom:7}},h("span",{style:{fontSize:13,fontWeight:700,color:"#1e293b"}},shift==="AM"?"Morning":"Afternoon"),h("span",{style:{fontSize:10,fontWeight:700,padding:"2px 7px",borderRadius:9999,background:shift==="AM"?"#e0f2fe":"#ffedd5",color:shift==="AM"?"#0369a1":"#c2410c"}},shift),!cOpen(cc,dy,shift)&&h("span",{style:{fontSize:11,color:"#94a3b8"}},"— cancelled")),h(ShiftCard,{day:dy,shift:shift,prov:pv,asgn:as,to:to,cc:cc,onPC:updPC,onRC:updRC,onMC:updMC}));})),
 h("div",{className:"pnl-wht",style:{padding:10}},h("div",{style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:6}},h("span",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",alignSelf:"center"}},"Roles"),Object.keys(BS).filter(function(k){return k!=="Unassigned";}).map(function(role){var s=BS[role];return h("span",{key:role,className:"bdg",style:{background:s.bg,color:s.c,borderColor:s.b,fontSize:10}},role);})),h("div",{style:{display:"flex",flexWrap:"wrap",gap:8,fontSize:11,color:"#64748b",marginBottom:4}},h("span",null,h("b",{style:{color:"#0d9488"}},"★")," preferred dyad"),h("span",null,h("b",{style:{color:"#ea580c"}},"⚑")," dyad break"),h("span",null,h("b",null,"WFH")," Kathy Thu")),h("p",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:3}},"Preferred Dyads"),h("div",{style:{display:"flex",flexWrap:"wrap",gap:10,fontSize:10,color:"#94a3b8"}},Object.keys(DYAD).filter(function(p){return DYAD[p];}).map(function(p){return h("span",{key:p},p+" → "+DYAD[p]);}))),
