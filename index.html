@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-title" content="Clinic Scheduler"/>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAD1UlEQVR4nO3aPY5bRxSEUa6uU23agTfidegnsDGwRhJn2GTdrncK+GI23j0hb1/WP19vA/fjXZpd2siopY8h4B9a+uMqX9rglqU/ouaVNvmppT+a5pc2etfSH0nnlTb77tIfReeXNvzf0h9CPYGsymBWXTCrLphVF8yqC2bVBbPqgll1Aa2qYFZdMKsuoFUVzKoLaFUFs+oCWlXBrLqAVlUwqy6gVRXQqgpoVQWz6gJaVQGtqoBWVUCrKqBVFdCqCmhVBbOqAlpVAa2qgFZVQKsqoFUV0KoKaFUFtKoC+nsfmffNDug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TQroNR/M9PdNCug1H8z0900K6DUfzPT3TepI0Pa6pW8NtG1d+tZA29albw20bV361kDb1qVvDbRtXfrWQNvWpW8NtG1d+tZA29albw20bV361kDb1qVvDbRtXfrWQNvWpW8NtG1d+tZA29albw20bV361kDb1qVvDbRtXfrWQNvWpW8NtG1d+tZA29albw20bV361kDb1qVvfQnQf//1VS8qfWugBfRppY98pdK3BlpAn1b6yFcqfWugBfRp3XuMj2zH8Rt/L31roMuBAQ10FTCgga4CBjTQVcCABroKGNBAVwEDGugqYEADXQUMaKCrgAENdBUwoC8MWo+XvjXQAvq00ke+UulbAy2gTyt95CuVvjXQAvq00ke+UulbA/2mxv9WvPr30rcGuhwY0EBXAQMa6CpgQANdBQxooKuAAQ10FTCgga4CBjTQVcCABroKGNBAVwED+sKg9XjpWwMtoE8rfeQrlb410AL6tNJHvlLpWwMtoE8rfeQrlb410AL6tNJHvlLpWwMtoKWWgFZVtx9LP0LaFdCqCmhVBbSqAlpVAa2qgFZVQKuq279LP0R6tNvbpR8jPRrQqgpoVXX7/9IPkj7bT5iB1sm9CxpqndgvMQOtE/staKh1Un/EDLRO6i7QUOuE7sYMtE7oQ6Ch1uQ+jBlqTe3TmIHWxB4CDbUm9TBmqDWlbZihVrrtmKFWqqdhhlqv7umYodarehlmqPXsXo4ZbD2jKOS3S38InV/a8LtLfxSdV9rsXUt/JM0vbfRTS380zSttcsvSH1H50gafuvTHVSfgb88A3Y/TS2bvAAAAA"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0iIzRmNDZlNSIvPgogIDx0ZXh0IHg9IjkwIiB5PSIxMzAiIGZvbnQtc2l6ZT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXBwbGUgQ29sb3IgRW1vamksU2Vnb2UgVUkgRW1vamksTm90byBDb2xvciBFbW9qaSI+8J+XkzwvdGV4dD4KPC9zdmc+"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <title>Clinic Scheduler</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -30,7 +33,7 @@ button,select,input,textarea{font-family:inherit;}
 .csec{padding:10px;border-top:1px solid #f1f5f9;}
 .slbl{font-size:9px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;display:block;}
 .tabs{display:flex;gap:3px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:4px;width:fit-content;}
-.tab{font-size:13px;padding:5px 12px;border-radius:8px;border:none;font-weight:700;cursor:pointer;}
+.tab{font-size:12px;padding:5px 10px;border-radius:8px;border:none;font-weight:700;cursor:pointer;}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .closed{border-radius:12px;border:1px dashed #e2e8f0;background:#f8fafc;display:flex;align-items:center;justify-content:center;height:100px;}
 .bdg{font-size:11px;font-weight:600;padding:2px 8px;border-radius:9999px;border:1px solid;display:inline-block;white-space:nowrap;}
@@ -41,7 +44,26 @@ button,select,input,textarea{font-family:inherit;}
 .tbl th{padding:5px 8px;font-size:9px;font-weight:700;color:#94a3b8;text-transform:uppercase;background:#f8fafc;text-align:center;}
 .tbl td{padding:5px 8px;text-align:center;border-top:1px solid #f8fafc;}
 .scrl{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-.export-box{width:100%;height:320px;border:1px solid #e2e8f0;border-radius:8px;padding:10px;font-size:12px;line-height:1.6;color:#334155;background:#f8fafc;resize:none;}
+.export-box{width:100%;height:300px;border:1px solid #e2e8f0;border-radius:8px;padding:10px;font-size:11px;line-height:1.7;color:#334155;background:#f8fafc;resize:none;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+.notes-input{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:6px 8px;font-size:11px;color:#334155;background:#fff;resize:none;line-height:1.5;min-height:38px;}
+.notes-input:focus{outline:none;border-color:#a5b4fc;}
+.date-input{font-size:11px;border:1px solid #e2e8f0;border-radius:8px;padding:4px 6px;color:#334155;background:#fff;cursor:pointer;}
+/* Print styles */
+@media print {
+  .hdr,.btnrow,.pnl-sky,.pnl-rose,.pnl-red,.pnl-ora,.pnl-grn,.tabs,.no-print,
+  .pnl-wht:last-of-type,button,.sel,.pbtn,.export-box{display:none!important;}
+  body{background:#fff;font-size:11px;}
+  .content{padding:0;gap:8px;}
+  .print-week-label{display:block!important;font-size:14px;font-weight:700;color:#0f172a;margin-bottom:8px;}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;break-inside:avoid;}
+  .card{box-shadow:none;border:1px solid #e2e8f0;break-inside:avoid;}
+  .csec{padding:6px 8px;}
+  .slbl{margin-bottom:4px;}
+  .notes-input{border:none;padding:0;background:transparent;resize:none;}
+  .pnl-wht{display:block!important;}
+  .closed{height:60px;}
+}
+.print-week-label{display:none;}
 </style>
 </head>
 <body>
@@ -58,6 +80,8 @@ var DYAD={"Dr. Ann Kim":"Lolita","Dr. Nate Kim":"Brie","Dr. Ordonez":"Yajari","D
 var RN_ROLES=["Triage","Clinic","BP Clinic","Admin","Special Assignment","Off"];
 var MEA_ROLES=["Provider MEA","Blood Draw","Float","Admin","Special Assignment","Unassigned"];
 var BS={Triage:{bg:"#ede9fe",c:"#5b21b6",b:"#ddd6fe"},Clinic:{bg:"#dbeafe",c:"#1e40af",b:"#bfdbfe"},"BP Clinic":{bg:"#fce7f3",c:"#9d174d",b:"#fbcfe8"},Admin:{bg:"#fef3c7",c:"#92400e",b:"#fde68a"},"Special Assignment":{bg:"#f0fdf4",c:"#166534",b:"#bbf7d0"},Off:{bg:"#f1f5f9",c:"#94a3b8",b:"#e2e8f0"},"Time Off":{bg:"#fff1f2",c:"#e11d48",b:"#fecdd3"},"Provider MEA":{bg:"#ccfbf1",c:"#115e59",b:"#99f6e4"},"Blood Draw":{bg:"#fee2e2",c:"#991b1b",b:"#fecaca"},Float:{bg:"#e0e7ff",c:"#3730a3",b:"#c7d2fe"},Unassigned:{bg:"#f9fafb",c:"#9ca3af",b:"#f3f4f6"}};
+
+/* ── helpers ── */
 function isSU(rn,day){return(STRUCT[rn]||[]).indexOf(day)>=0;}
 function isMegan(cc,day,shift){return day==="Tuesday"&&shift==="PM"&&cc[day][shift].megan!==false;}
 function cOpen(cc,day,shift){return cc[day][shift].open!==false;}
@@ -66,302 +90,420 @@ function cBP(cc,day,shift){return cc[day][shift].bpClinic===true;}
 function isWFH(rn,day){return rn==="Kathy"&&day==="Thursday";}
 function isTO(to,type,name,day,shift){return!!(to[type]&&to[type][name]&&to[type][name][day]&&to[type][name][day][shift]);}
 function isTU(to,rn,day,shift){return isSU(rn,day)||isTO(to,"rn",rn,day,shift);}
-var SK="clinic-v7";
-function loadH(){try{var r=localStorage.getItem(SK);return r?JSON.parse(r):{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}catch(x){return{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}}
-function saveH(h){try{localStorage.setItem(SK,JSON.stringify(h));}catch(x){}}
+
+/* ── date helpers ── */
+var MONTH_NAMES=["January","February","March","April","May","June","July","August","September","October","November","December"];
+var SHORT_MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function parseMon(str){if(!str)return null;var p=str.split("-");return new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));}
+function addDays(d,n){var r=new Date(d);r.setDate(r.getDate()+n);return r;}
+function fmtShort(d){return(d.getMonth()+1)+"/"+d.getDate();}
+function fmtFull(d){return MONTH_NAMES[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();}
+function fmtFullShort(d){return SHORT_MONTHS[d.getMonth()]+" "+d.getDate();}
+function dayLabel(monStr,idx){
+  var mon=parseMon(monStr);
+  if(!mon)return DAYS[idx].slice(0,3);
+  var d=addDays(mon,idx);
+  return DAYS[idx].slice(0,3)+" "+fmtShort(d);
+}
+function weekRangeLabel(monStr){
+  var mon=parseMon(monStr);
+  if(!mon)return null;
+  var fri=addDays(mon,4);
+  if(mon.getMonth()===fri.getMonth()){
+    return MONTH_NAMES[mon.getMonth()]+" "+mon.getDate()+"–"+fri.getDate()+", "+fri.getFullYear();
+  }
+  return fmtFullShort(mon)+" – "+fmtFullShort(fri)+", "+fri.getFullYear();
+}
+
+/* ── storage keys ── */
+var SK_HIST="clinic-v6";
+var SK_WEEK="clinic-week-v1";
+
+/* ── history (running totals) ── */
+function loadH(){try{var r=localStorage.getItem(SK_HIST);return r?JSON.parse(r):{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}catch(x){return{rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};}}
+function saveH(h){try{localStorage.setItem(SK_HIST,JSON.stringify(h));}catch(x){}}
+
+/* ── current week persistence ── */
+function loadW(){
+  try{
+    var r=localStorage.getItem(SK_WEEK);
+    if(!r)return null;
+    return JSON.parse(r);
+  }catch(x){return null;}
+}
+function saveW(state){try{localStorage.setItem(SK_WEEK,JSON.stringify(state));}catch(x){}}
+function clearW(){try{localStorage.removeItem(SK_WEEK);}catch(x){}}
+
+/* ── make-blank helpers ── */
 function mkCC(){var c={};DAYS.forEach(function(day){c[day]={};SHIFTS.forEach(function(shift){c[day][shift]={open:!(day==="Wednesday"&&shift==="PM"),bloodDraw:shift==="AM"&&["Monday","Wednesday","Friday"].indexOf(day)>=0,bpClinic:(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM"),megan:day==="Tuesday"&&shift==="PM"};});});return c;}
 function mkProv(cc){var p={};DAYS.forEach(function(day){p[day]={};SHIFTS.forEach(function(shift){p[day][shift]=isMegan(cc,day,shift)?["Megan Henry, NP"]:[];});});return p;}
 function mkAsgn(){var a={};DAYS.forEach(function(day){a[day]={};SHIFTS.forEach(function(shift){a[day][shift]={rn:{},mea:{}};RNS.forEach(function(rn){a[day][shift].rn[rn]=null;});MEAS.forEach(function(mea){a[day][shift].mea[mea]={role:null,provider:null};});});});return a;}
 function mkTO(){var t={rn:{},mea:{}};RNS.forEach(function(rn){t.rn[rn]={};DAYS.forEach(function(day){t.rn[rn][day]={AM:false,PM:false};});});MEAS.forEach(function(mea){t.mea[mea]={};DAYS.forEach(function(day){t.mea[mea][day]={AM:false,PM:false};});});return t;}
-function buildExport(as,pv,cc){var lines=[];DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;var slot=as[day][shift];var hasContent=false;RNS.forEach(function(rn){if(slot.rn[rn]&&slot.rn[rn]!=="Off"&&slot.rn[rn]!=="Time Off")hasContent=true;});MEAS.forEach(function(mea){if(slot.mea[mea]&&slot.mea[mea].role&&slot.mea[mea].role!=="Time Off"&&slot.mea[mea].role!=="Unassigned")hasContent=true;});if(!hasContent)return;lines.push(day+" "+shift);RNS.forEach(function(rn){var role=slot.rn[rn];if(!role||role==="Off"||role==="Time Off")return;lines.push(rn+" - "+role);});lines.push("");MEAS.forEach(function(mea){var md=slot.mea[mea];if(!md||!md.role||md.role==="Time Off"||md.role==="Unassigned")return;if(md.role==="Provider MEA"&&md.provider){lines.push(mea+" - provider: "+md.provider);}else{lines.push(mea+" - "+md.role.toLowerCase());}});lines.push("");});});return lines.join("\n").trim();}
+function mkNotes(){var n={};DAYS.forEach(function(day){n[day]={AM:"",PM:""};});return n;}
+
+/* ── load initial week state ── */
+function loadWeekState(){
+  var saved=loadW();
+  var ic=mkCC();
+  if(!saved)return{cc:ic,pv:mkProv(ic),as:mkAsgn(),to:mkTO(),notes:mkNotes(),monDate:""};
+  /* merge carefully in case structure has changed */
+  var cc=saved.cc||ic;
+  var pv=saved.pv||mkProv(cc);
+  var as=saved.as||mkAsgn();
+  var to=saved.to||mkTO();
+  var notes=saved.notes||mkNotes();
+  var monDate=saved.monDate||"";
+  return{cc:cc,pv:pv,as:as,to:to,notes:notes,monDate:monDate};
+}
+
+/* ── export builder ── */
+function buildExport(as,pv,cc,notes,monDate){
+  var lines=[];
+  var wl=weekRangeLabel(monDate);
+  if(wl)lines.push("Week of "+wl);
+  lines.push("");
+  DAYS.forEach(function(day,idx){
+    SHIFTS.forEach(function(shift){
+      if(!cOpen(cc,day,shift))return;
+      var slot=as[day][shift];
+      var hasContent=false;
+      RNS.forEach(function(rn){var r=slot.rn[rn];if(r&&r!=="Off"&&r!=="Time Off")hasContent=true;});
+      MEAS.forEach(function(mea){var r=slot.mea[mea]&&slot.mea[mea].role;if(r&&r!=="Time Off"&&r!=="Unassigned")hasContent=true;});
+      if(!hasContent)return;
+      var mon=parseMon(monDate);
+      var dayHdr=mon?(DAYS[idx].slice(0,3)+" "+fmtShort(addDays(mon,idx))):DAYS[idx];
+      lines.push("=== "+dayHdr+" "+shift+" ===");
+      var rnLines=[];
+      RNS.forEach(function(rn){var role=slot.rn[rn];if(!role||role==="Off"||role==="Time Off")return;rnLines.push("  "+rn+": "+role);});
+      if(rnLines.length>0){lines.push("RNs:");rnLines.forEach(function(l){lines.push(l);});}
+      var meaLines=[];
+      MEAS.forEach(function(mea){var md=slot.mea[mea];if(!md||!md.role||md.role==="Time Off"||md.role==="Unassigned")return;if(md.role==="Provider MEA"&&md.provider){meaLines.push("  "+mea+": Provider MEA → "+md.provider);}else{meaLines.push("  "+mea+": "+md.role);}});
+      if(meaLines.length>0){lines.push("MEAs:");meaLines.forEach(function(l){lines.push(l);});}
+      var note=notes&&notes[day]&&notes[day][shift];
+      if(note&&note.trim())lines.push("  Note: "+note.trim());
+      lines.push("");
+    });
+  });
+  return lines.join("\n").trim();
+}
+
+/* ── generate ── */
 function generate(ps,hist,to,cc){
-var a=mkAsgn();var rsa={};RNS.forEach(function(rn){rsa[rn]=0;});var rbd={};RNS.forEach(function(rn){rbd[rn]={};});
-var rrh={};RNS.forEach(function(rn){rrh[rn]=Object.assign({Triage:0,Clinic:0,"BP Clinic":0,Admin:0},(hist.rnRoles&&hist.rnRoles[rn])||{});});
-var bph={};RNS.forEach(function(rn){bph[rn]=(hist.bpClinic&&hist.bpClinic[rn])||0;});
-var rwr={};RNS.forEach(function(rn){rwr[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0};});
-var msh={};MEAS.forEach(function(m){msh[m]=(hist.meaShifts&&hist.meaShifts[m])||0;});
-var mws={};MEAS.forEach(function(m){mws[m]=0;});
-var mwr={};MEAS.forEach(function(m){mwr[m]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0};});
-var mwa={};MEAS.forEach(function(m){mwa[m]=0;});
-var mwb={};MEAS.forEach(function(m){mwb[m]=0;});
-function pool(day,shift){return RNS.filter(function(rn){if(isTU(to,rn,day,shift))return false;if(rsa[rn]>=RN_SHIFTS[rn])return false;if(isWFH(rn,day)&&shift==="AM")return false;if(isWFH(rn,day)&&shift==="PM")return false;return true;}).sort(function(a,b){return rsa[a]-rsa[b];});}
-function aRN(slot,rn,role,day){slot.rn[rn]=role;if(role!=="Off"){rsa[rn]++;if(rwr[rn][role]!==undefined)rwr[rn][role]++;rbd[rn][day]=role;}}
-DAYS.forEach(function(day){["AM","PM"].forEach(function(shift){
-if(!cOpen(cc,day,shift))return;
-var slot=a[day][shift];var pl=ps[day][shift];var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
-RNS.forEach(function(rn){if(isSU(rn,day))slot.rn[rn]="Off";else if(isTO(to,"rn",rn,day,shift))slot.rn[rn]="Time Off";else if(isWFH(rn,day)&&shift==="AM")slot.rn[rn]="Off";else slot.rn[rn]=null;});
-if(isWFH("Kathy",day)&&shift==="PM"){if(!isTO(to,"rn","Kathy",day,shift)&&rsa["Kathy"]<RN_SHIFTS["Kathy"]){aRN(slot,"Kathy","Admin",day);}}
-var p=pool(day,shift);
-function amR(rn){return shift==="PM"?(rbd[rn]&&rbd[rn][day])||null:null;}
-if(hasBP){var bpc=p.filter(function(rn){return amR(rn)!=="BP Clinic";}).sort(function(a,b){return((bph[a]||0)+rwr[a]["BP Clinic"]*10)-((bph[b]||0)+rwr[b]["BP Clinic"]*10);});if(bpc.length>0){aRN(slot,bpc[0],"BP Clinic",day);p=p.filter(function(r){return r!==bpc[0];});}}
-var trc=p.filter(function(rn){return amR(rn)!=="Triage";}).sort(function(a,b){return((rrh[a].Triage||0)+rwr[a].Triage*5)-((rrh[b].Triage||0)+rwr[b].Triage*5);});
-if(trc.length>0){aRN(slot,trc[0],"Triage",day);p=p.filter(function(r){return r!==trc[0];});}
-var clc=p.filter(function(rn){return amR(rn)!=="Clinic";}).sort(function(a,b){return((rrh[a].Clinic||0)+rwr[a].Clinic*3)-((rrh[b].Clinic||0)+rwr[b].Clinic*3);}).slice(0,Math.min(2,p.length));
-clc.forEach(function(rn){aRN(slot,rn,"Clinic",day);p=p.filter(function(r){return r!==rn;});});
-var tf=RNS.some(function(rn){return slot.rn[rn]==="Triage";});
-var cf=RNS.some(function(rn){return slot.rn[rn]==="Clinic";});
-var bf=!hasBP||RNS.some(function(rn){return slot.rn[rn]==="BP Clinic";});
-if(tf&&cf&&bf&&p.length>0){var ac=p.filter(function(rn){return rwr[rn].Admin<2&&amR(rn)!=="Admin";}).sort(function(a,b){return((rrh[a].Admin||0)+rwr[a].Admin)-((rrh[b].Admin||0)+rwr[b].Admin);});if(ac.length>0){aRN(slot,ac[0],"Admin",day);p=p.filter(function(r){return r!==ac[0];});}}
-p.forEach(function(rn){if(!slot.rn[rn])slot.rn[rn]="Off";});
-RNS.forEach(function(rn){if(slot.rn[rn]===null)slot.rn[rn]="Off";});
-var mp=MEAS.filter(function(m){return!isTO(to,"mea",m,day,shift);}).sort(function(a,b){return(msh[a]+mws[a])-(msh[b]+mws[b]);});
-MEAS.forEach(function(mea){if(isTO(to,"mea",mea,day,shift))slot.mea[mea]={role:"Time Off",provider:null};});
-function aM(mea,role,prov){slot.mea[mea]={role:role,provider:prov||null};mws[mea]++;if(mwr[mea][role]!==undefined)mwr[mea][role]++;if(role==="Admin")mwa[mea]++;if(role==="Blood Draw")mwb[mea]++;mp=mp.filter(function(m){return m!==mea;});}
-if(hasBD&&mp.length>0){var bdc=mp.slice().sort(function(a,b){return(mwb[a]*3+msh[a]+mws[a])-(mwb[b]*3+msh[b]+mws[b]);});aM(bdc[0],"Blood Draw");}
-var up=pl.slice();
-up.slice().forEach(function(pv){var pr=DYAD[pv];if(pr&&mp.indexOf(pr)>=0){aM(pr,"Provider MEA",pv);up.splice(up.indexOf(pv),1);}});
-up.slice().forEach(function(pv){if(!mp.length)return;aM(mp[0],"Provider MEA",pv);up.splice(up.indexOf(pv),1);});
-var fc=0;while(mp.length>0&&fc<2){aM(mp[0],"Float");fc++;}
-mp.slice().sort(function(a,b){return(mwa[a]*4+msh[a])-(mwa[b]*4+msh[b]);}).forEach(function(mea){aM(mea,"Admin");});
-});});
-return{assignments:a,weeklyRoles:rwr,meaWeeklyRoles:mwr};
+  var a=mkAsgn();
+  var rsa={};RNS.forEach(function(rn){rsa[rn]=0;});
+  var rbd={};RNS.forEach(function(rn){rbd[rn]={};});
+  var rrh={};RNS.forEach(function(rn){rrh[rn]=Object.assign({Triage:0,Clinic:0,"BP Clinic":0,Admin:0,"Special Assignment":0},(hist.rnRoles&&hist.rnRoles[rn])||{});});
+  var bph={};RNS.forEach(function(rn){bph[rn]=(hist.bpClinic&&hist.bpClinic[rn])||0;});
+  var rwr={};RNS.forEach(function(rn){rwr[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0,"Special Assignment":0};});
+  var msh={};MEAS.forEach(function(m){msh[m]=(hist.meaShifts&&hist.meaShifts[m])||0;});
+  var mws={};MEAS.forEach(function(m){mws[m]=0;});
+  var mwr={};MEAS.forEach(function(m){mwr[m]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0,"Special Assignment":0};});
+  var mwa={};MEAS.forEach(function(m){mwa[m]=0;});
+  var mwb={};MEAS.forEach(function(m){mwb[m]=0;});
+  function pool(day,shift){return RNS.filter(function(rn){if(isTU(to,rn,day,shift))return false;if(rsa[rn]>=RN_SHIFTS[rn])return false;if(isWFH(rn,day)&&shift==="AM")return false;if(isWFH(rn,day)&&shift==="PM")return false;return true;}).sort(function(a,b){return rsa[a]-rsa[b];});}
+  function aRN(slot,rn,role,day){slot.rn[rn]=role;if(role!=="Off"){rsa[rn]++;if(rwr[rn][role]!==undefined)rwr[rn][role]++;rbd[rn][day]=role;}}
+  DAYS.forEach(function(day){["AM","PM"].forEach(function(shift){
+    if(!cOpen(cc,day,shift))return;
+    var slot=a[day][shift];var pl=ps[day][shift];var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
+    RNS.forEach(function(rn){if(isSU(rn,day))slot.rn[rn]="Off";else if(isTO(to,"rn",rn,day,shift))slot.rn[rn]="Time Off";else if(isWFH(rn,day)&&shift==="AM")slot.rn[rn]="Off";else slot.rn[rn]=null;});
+    if(isWFH("Kathy",day)&&shift==="PM"&&!isTO(to,"rn","Kathy",day,shift)&&rsa["Kathy"]<RN_SHIFTS["Kathy"])aRN(slot,"Kathy","Admin",day);
+    var p=pool(day,shift);
+    function amR(rn){return shift==="PM"?(rbd[rn]&&rbd[rn][day])||null:null;}
+    /* Priority: 1-Triage 2-first Clinic 3-BP Clinic 4-Admin 5-second Clinic */
+    var trc=p.filter(function(rn){return amR(rn)!=="Triage";}).sort(function(a,b){return((rrh[a].Triage||0)+rwr[a].Triage*5)-((rrh[b].Triage||0)+rwr[b].Triage*5);});
+    if(trc.length>0){aRN(slot,trc[0],"Triage",day);p=p.filter(function(r){return r!==trc[0];});}
+    var clc1=p.filter(function(rn){return amR(rn)!=="Clinic";}).sort(function(a,b){return((rrh[a].Clinic||0)+rwr[a].Clinic*3)-((rrh[b].Clinic||0)+rwr[b].Clinic*3);});
+    if(clc1.length>0){aRN(slot,clc1[0],"Clinic",day);p=p.filter(function(r){return r!==clc1[0];});}
+    if(hasBP){var bpc=p.filter(function(rn){return amR(rn)!=="BP Clinic";}).sort(function(a,b){return((bph[a]||0)+rwr[a]["BP Clinic"]*10)-((bph[b]||0)+rwr[b]["BP Clinic"]*10);});if(bpc.length>0){aRN(slot,bpc[0],"BP Clinic",day);p=p.filter(function(r){return r!==bpc[0];});}}
+    var tf=RNS.some(function(rn){return slot.rn[rn]==="Triage";});var cf=RNS.some(function(rn){return slot.rn[rn]==="Clinic";});var bf=!hasBP||RNS.some(function(rn){return slot.rn[rn]==="BP Clinic";});
+    if(tf&&cf&&bf&&p.length>0){var ac=p.filter(function(rn){return rwr[rn].Admin<2&&amR(rn)!=="Admin";}).sort(function(a,b){return((rrh[a].Admin||0)+rwr[a].Admin)-((rrh[b].Admin||0)+rwr[b].Admin);});if(ac.length>0){aRN(slot,ac[0],"Admin",day);p=p.filter(function(r){return r!==ac[0];});}}
+    var clc2=p.filter(function(rn){return amR(rn)!=="Clinic";}).sort(function(a,b){return((rrh[a].Clinic||0)+rwr[a].Clinic*3)-((rrh[b].Clinic||0)+rwr[b].Clinic*3);});
+    if(clc2.length>0){aRN(slot,clc2[0],"Clinic",day);p=p.filter(function(r){return r!==clc2[0];});}
+    p.forEach(function(rn){if(!slot.rn[rn])slot.rn[rn]="Off";});RNS.forEach(function(rn){if(slot.rn[rn]===null)slot.rn[rn]="Off";});
+    var mp=MEAS.filter(function(m){return!isTO(to,"mea",m,day,shift);}).sort(function(a,b){return(msh[a]+mws[a])-(msh[b]+mws[b]);});
+    MEAS.forEach(function(mea){if(isTO(to,"mea",mea,day,shift))slot.mea[mea]={role:"Time Off",provider:null};});
+    function aM(mea,role,prov){slot.mea[mea]={role:role,provider:prov||null};mws[mea]++;if(mwr[mea][role]!==undefined)mwr[mea][role]++;if(role==="Admin")mwa[mea]++;if(role==="Blood Draw")mwb[mea]++;mp=mp.filter(function(m){return m!==mea;});}
+    if(hasBD&&mp.length>0){var bdc=mp.slice().sort(function(a,b){return(mwb[a]*3+msh[a]+mws[a])-(mwb[b]*3+msh[b]+mws[b]);});aM(bdc[0],"Blood Draw");}
+    var up=pl.slice();
+    up.slice().forEach(function(pv){var pr=DYAD[pv];if(pr&&mp.indexOf(pr)>=0){aM(pr,"Provider MEA",pv);up.splice(up.indexOf(pv),1);}});
+    up.slice().forEach(function(pv){if(!mp.length)return;aM(mp[0],"Provider MEA",pv);up.splice(up.indexOf(pv),1);});
+    var fc=0;while(mp.length>0&&fc<2){aM(mp[0],"Float");fc++;}
+    mp.slice().sort(function(a,b){return(mwa[a]*4+msh[a])-(mwa[b]*4+msh[b]);}).forEach(function(mea){aM(mea,"Admin");});
+  });});
+  return{assignments:a,weeklyRoles:rwr,meaWeeklyRoles:mwr};
 }
+
+/* ── detect conflicts ── */
 function detect(a,ps,to,cc){
-var cx=[];var rwa={};RNS.forEach(function(r){rwa[r]=0;});var rws={};RNS.forEach(function(r){rws[r]=0;});var mwa={};MEAS.forEach(function(m){mwa[m]=0;});var rdr={};RNS.forEach(function(rn){rdr[rn]={};});
-DAYS.forEach(function(day){SHIFTS.forEach(function(shift){
-if(!cOpen(cc,day,shift))return;
-var slot=a[day][shift];var pl=ps[day][shift];var lbl=day+" "+shift;var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
-var act=RNS.filter(function(rn){var r=slot.rn[rn];return r&&r!=="Off"&&r!=="Time Off";});
-var roles=act.map(function(rn){return slot.rn[rn];});
-var tc=roles.filter(function(r){return r==="Triage";}).length;
-var clc=roles.filter(function(r){return r==="Clinic";}).length;
-var bpc=roles.filter(function(r){return r==="BP Clinic";}).length;
-var ac=roles.filter(function(r){return r==="Admin";}).length;
-if(tc===0)cx.push({shift:lbl,msg:"No RN assigned to Triage."});
-if(tc>1)cx.push({shift:lbl,msg:"More than one RN in Triage."});
-if(clc<1)cx.push({shift:lbl,msg:"No RN assigned to Clinic."});
-if(hasBP&&bpc===0)cx.push({shift:lbl,msg:"BP Clinic active but no RN assigned."});
-if(!hasBP&&bpc>0)cx.push({shift:lbl,msg:"BP Clinic RN assigned but cancelled."});
-if(ac>0&&(tc===0||clc===0))cx.push({shift:lbl,msg:"Admin assigned but clinical coverage incomplete."});
-act.forEach(function(rn){var role=slot.rn[rn];if(role==="Special Assignment")return;if(!rdr[rn][day])rdr[rn][day]=role;else if(rdr[rn][day]===role)cx.push({shift:lbl,msg:rn+" has "+role+" AM and PM on "+day+"."});});
-RNS.forEach(function(rn){var role=slot.rn[rn];if(isTO(to,"rn",rn,day,shift))return;if(role&&role!=="Off"&&role!=="Time Off"){rws[rn]++;if(role==="Admin")rwa[rn]++;}});
-var actM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role&&slot.mea[m].role!=="Time Off";});
-var mr=actM.map(function(m){return slot.mea[m].role;});
-var bdc=mr.filter(function(r){return r==="Blood Draw";}).length;
-var flc=mr.filter(function(r){return r==="Float";}).length;
-var pM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role==="Provider MEA";});
-if(hasBD&&bdc===0)cx.push({shift:lbl,msg:"Blood Draw active but no MEA assigned."});
-if(!hasBD&&bdc>0)cx.push({shift:lbl,msg:"Blood Draw MEA assigned but cancelled."});
-if(flc>2)cx.push({shift:lbl,msg:flc+" Float MEAs — max 2."});
-var cp=pM.map(function(m){return slot.mea[m].provider;}).filter(Boolean);
-pl.forEach(function(pv){if(cp.indexOf(pv)<0)cx.push({shift:lbl,msg:pv+" has no MEA."});});
-pM.forEach(function(mea){var pv=slot.mea[mea].provider;if(pv){var pr=DYAD[pv];if(pr&&pr!==mea)cx.push({shift:lbl,msg:pv+" with "+mea+" (preferred: "+pr+").",isDyad:true});}});
-MEAS.forEach(function(mea){if(slot.mea[mea]&&slot.mea[mea].role==="Admin")mwa[mea]++;});
-});});
-RNS.forEach(function(rn){var tos=DAYS.reduce(function(s,day){return s+SHIFTS.reduce(function(ss,shift){return ss+(cOpen(cc,day,shift)&&isTO(to,"rn",rn,day,shift)?1:0);},0);},0);var target=Math.max(0,RN_SHIFTS[rn]-tos);if(target>0&&rwa[rn]<1)cx.push({shift:"Weekly",msg:rn+" has no Admin shift."});if(rwa[rn]>2)cx.push({shift:"Weekly",msg:rn+" has "+rwa[rn]+" Admin shifts (max 2)."});if(rws[rn]<target-1)cx.push({shift:"Weekly",msg:rn+" only "+rws[rn]+" of "+target+" shifts."});if(rws[rn]>RN_SHIFTS[rn])cx.push({shift:"Weekly",msg:rn+" over shift target."});});
-MEAS.forEach(function(mea){var hw=DAYS.some(function(day){return SHIFTS.some(function(shift){var r=a[day][shift].mea[mea]&&a[day][shift].mea[mea].role;return r&&r!=="Time Off";});});if(hw&&mwa[mea]<1)cx.push({shift:"Weekly",msg:mea+" has no Admin shift."});});
-return cx;
+  var cx=[];var rwa={};RNS.forEach(function(r){rwa[r]=0;});var rws={};RNS.forEach(function(r){rws[r]=0;});var mwa={};MEAS.forEach(function(m){mwa[m]=0;});var rdr={};RNS.forEach(function(rn){rdr[rn]={};});
+  DAYS.forEach(function(day){SHIFTS.forEach(function(shift){
+    if(!cOpen(cc,day,shift))return;
+    var slot=a[day][shift];var pl=ps[day][shift];var lbl=day+" "+shift;var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
+    var act=RNS.filter(function(rn){var r=slot.rn[rn];return r&&r!=="Off"&&r!=="Time Off"&&r!=="Special Assignment";});
+    var roles=act.map(function(rn){return slot.rn[rn];});
+    var tc=roles.filter(function(r){return r==="Triage";}).length;var clc=roles.filter(function(r){return r==="Clinic";}).length;var bpc=roles.filter(function(r){return r==="BP Clinic";}).length;var ac=roles.filter(function(r){return r==="Admin";}).length;
+    if(tc===0)cx.push({shift:lbl,msg:"No RN assigned to Triage."});if(tc>1)cx.push({shift:lbl,msg:"More than one RN in Triage."});if(clc<1)cx.push({shift:lbl,msg:"No RN assigned to Clinic."});
+    if(hasBP&&bpc===0)cx.push({shift:lbl,msg:"BP Clinic active but no RN assigned."});if(!hasBP&&bpc>0)cx.push({shift:lbl,msg:"BP Clinic RN assigned but cancelled."});
+    if(ac>0&&(tc===0||clc===0))cx.push({shift:lbl,msg:"Admin assigned but clinical coverage incomplete."});
+    act.forEach(function(rn){var role=slot.rn[rn];if(!rdr[rn][day])rdr[rn][day]=role;else if(rdr[rn][day]===role)cx.push({shift:lbl,msg:rn+" has "+role+" AM and PM on "+day+"."});});
+    RNS.forEach(function(rn){var role=slot.rn[rn];if(isTO(to,"rn",rn,day,shift))return;if(role&&role!=="Off"&&role!=="Time Off"){rws[rn]++;if(role==="Admin")rwa[rn]++;}});
+    var actM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role&&slot.mea[m].role!=="Time Off"&&slot.mea[m].role!=="Special Assignment";});var mr=actM.map(function(m){return slot.mea[m].role;});
+    var bdc=mr.filter(function(r){return r==="Blood Draw";}).length;var flc=mr.filter(function(r){return r==="Float";}).length;var pM=MEAS.filter(function(m){return slot.mea[m]&&slot.mea[m].role==="Provider MEA";});
+    if(hasBD&&bdc===0)cx.push({shift:lbl,msg:"Blood Draw active but no MEA assigned."});if(!hasBD&&bdc>0)cx.push({shift:lbl,msg:"Blood Draw MEA assigned but cancelled."});if(flc>2)cx.push({shift:lbl,msg:flc+" Float MEAs — max 2."});
+    var cp=pM.map(function(m){return slot.mea[m].provider;}).filter(Boolean);pl.forEach(function(pv){if(cp.indexOf(pv)<0)cx.push({shift:lbl,msg:pv+" has no MEA."});});
+    pM.forEach(function(mea){var pv=slot.mea[mea].provider;if(pv){var pr=DYAD[pv];if(pr&&pr!==mea)cx.push({shift:lbl,msg:pv+" with "+mea+" (preferred: "+pr+").",isDyad:true});}});
+    MEAS.forEach(function(mea){if(slot.mea[mea]&&slot.mea[mea].role==="Admin")mwa[mea]++;});
+  });});
+  RNS.forEach(function(rn){var tos=DAYS.reduce(function(s,day){return s+SHIFTS.reduce(function(ss,shift){return ss+(cOpen(cc,day,shift)&&isTO(to,"rn",rn,day,shift)?1:0);},0);},0);var target=Math.max(0,RN_SHIFTS[rn]-tos);if(target>0&&rwa[rn]<1)cx.push({shift:"Weekly",msg:rn+" has no Admin shift."});if(rwa[rn]>2)cx.push({shift:"Weekly",msg:rn+" has "+rwa[rn]+" Admin shifts (max 2)."});if(rws[rn]<target-1)cx.push({shift:"Weekly",msg:rn+" only "+rws[rn]+" of "+target+" shifts."});if(rws[rn]>RN_SHIFTS[rn])cx.push({shift:"Weekly",msg:rn+" over shift target."});});
+  MEAS.forEach(function(mea){var hw=DAYS.some(function(day){return SHIFTS.some(function(shift){var r=a[day][shift].mea[mea]&&a[day][shift].mea[mea].role;return r&&r!=="Time Off"&&r!=="Special Assignment";});});if(hw&&mwa[mea]<1)cx.push({shift:"Weekly",msg:mea+" has no Admin shift."});});
+  return cx;
 }
+
+/* ── React ── */
 var h=React.createElement;
 var useState=React.useState;
+var useEffect=React.useEffect;
+var useRef=React.useRef;
+
 function Badge(props){var role=props.role;if(!role)return h("span",{style:{fontSize:11,color:"#cbd5e1"}},"—");var s=BS[role]||BS.Unassigned;return h("span",{className:"bdg",style:{background:s.bg,color:s.c,borderColor:s.b}},role);}
+
 function SetupPanel(props){
-var cc=props.cc,tog=props.tog,open=props.open,setOpen=props.setOpen;
-var cols=[];DAYS.forEach(function(d){SHIFTS.forEach(function(s){if(!(d==="Wednesday"&&s==="PM"))cols.push({d:d,s:s});});});
-var rows=[{lbl:"🏥 Clinic Open",f:"open",col:"#475569",ok:function(){return true;}},{lbl:"🩸 Blood Draw",f:"bloodDraw",col:"#dc2626",ok:function(d,s){return s==="AM"&&["Monday","Wednesday","Friday"].indexOf(d)>=0;}},{lbl:"💉 BP Clinic",f:"bpClinic",col:"#be185d",ok:function(d,s){return(d==="Wednesday"&&s==="AM")||(d==="Friday"&&s==="PM");}},{lbl:"👩‍⚕️ Megan Henry",f:"megan",col:"#4338ca",ok:function(d,s){return d==="Tuesday"&&s==="PM";}}];
-return h("div",{className:"pnl-sky"},
-h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #bae6fd":"none"},onClick:function(){setOpen(!open);}},
-h("div",{style:{display:"flex",alignItems:"center",gap:8}},h("span",{style:{fontSize:13,fontWeight:700,color:"#0369a1"}},"⚙ Week Setup"),h("span",{style:{fontSize:11,color:"#7dd3fc"}},"Configure per shift")),
-h("span",{style:{fontSize:11,fontWeight:700,color:"#7dd3fc"}},open?"▲":"▼")),
-open&&h("div",{className:"pnl-bd scrl"},
-h("table",{style:{borderCollapse:"collapse",fontSize:11,minWidth:"100%"}},
-h("thead",null,h("tr",null,
-h("th",{style:{textAlign:"left",paddingRight:10,paddingBottom:6,fontWeight:700,color:"#64748b",minWidth:105}},"Setting"),
-cols.map(function(col){return h("th",{key:col.d+col.s,style:{textAlign:"center",padding:"0 4px 6px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap",minWidth:38}},h("div",null,col.d.slice(0,3)),h("div",{style:{color:col.s==="AM"?"#0ea5e9":"#f97316"}},col.s));}))),
-h("tbody",null,rows.map(function(row){return h("tr",{key:row.f,style:{borderTop:"1px solid #bae6fd"}},
-h("td",{style:{padding:"7px 10px 7px 0",fontWeight:600,color:row.col,whiteSpace:"nowrap"}},row.lbl),
-cols.map(function(col){var ok=row.ok(col.d,col.s);var io=cc[col.d][col.s].open;var chk=cc[col.d][col.s][row.f];var dis=!io&&row.f!=="open";return h("td",{key:col.d+col.s,style:{textAlign:"center",padding:"7px 4px"}},ok?h("input",{type:"checkbox",checked:chk&&(row.f==="open"||io),disabled:dis,onChange:function(){tog(col.d,col.s,row.f);},style:{width:15,height:15,opacity:dis?0.3:1}}):h("span",{style:{color:"#e2e8f0"}},"—"));}));}))
-),h("p",{style:{fontSize:9,color:"#7dd3fc",fontStyle:"italic",marginTop:6,paddingLeft:14,paddingBottom:8}},"Wed PM always closed."))
-);}
+  var cc=props.cc,tog=props.tog,open=props.open,setOpen=props.setOpen;
+  var cols=[];DAYS.forEach(function(d){SHIFTS.forEach(function(s){if(!(d==="Wednesday"&&s==="PM"))cols.push({d:d,s:s});});});
+  var rows=[{lbl:"🏥 Clinic Open",f:"open",col:"#475569",ok:function(){return true;}},{lbl:"🩸 Blood Draw",f:"bloodDraw",col:"#dc2626",ok:function(d,s){return s==="AM"&&["Monday","Wednesday","Friday"].indexOf(d)>=0;}},{lbl:"💉 BP Clinic",f:"bpClinic",col:"#be185d",ok:function(d,s){return(d==="Wednesday"&&s==="AM")||(d==="Friday"&&s==="PM");}},{lbl:"👩‍⚕️ Megan Henry",f:"megan",col:"#4338ca",ok:function(d,s){return d==="Tuesday"&&s==="PM";}}];
+  return h("div",{className:"pnl-sky no-print"},
+    h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #bae6fd":"none"},onClick:function(){setOpen(!open);}},h("div",{style:{display:"flex",alignItems:"center",gap:8}},h("span",{style:{fontSize:13,fontWeight:700,color:"#0369a1"}},"⚙ Week Setup"),h("span",{style:{fontSize:11,color:"#7dd3fc"}},"Configure per shift")),h("span",{style:{fontSize:11,fontWeight:700,color:"#7dd3fc"}},open?"▲":"▼")),
+    open&&h("div",{className:"pnl-bd scrl"},h("table",{style:{borderCollapse:"collapse",fontSize:11,minWidth:"100%"}},
+      h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingRight:10,paddingBottom:6,fontWeight:700,color:"#64748b",minWidth:105}},"Setting"),cols.map(function(col){return h("th",{key:col.d+col.s,style:{textAlign:"center",padding:"0 4px 6px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap",minWidth:38}},h("div",null,col.d.slice(0,3)),h("div",{style:{color:col.s==="AM"?"#0ea5e9":"#f97316"}},col.s));}))),
+      h("tbody",null,rows.map(function(row){return h("tr",{key:row.f,style:{borderTop:"1px solid #bae6fd"}},h("td",{style:{padding:"7px 10px 7px 0",fontWeight:600,color:row.col,whiteSpace:"nowrap"}},row.lbl),cols.map(function(col){var ok=row.ok(col.d,col.s);var io=cc[col.d][col.s].open;var chk=cc[col.d][col.s][row.f];var dis=!io&&row.f!=="open";return h("td",{key:col.d+col.s,style:{textAlign:"center",padding:"7px 4px"}},ok?h("input",{type:"checkbox",checked:chk&&(row.f==="open"||io),disabled:dis,onChange:function(){tog(col.d,col.s,row.f);},style:{width:15,height:15,opacity:dis?0.3:1}}):h("span",{style:{color:"#e2e8f0"}},"—"));}));}))
+    ),h("p",{style:{fontSize:9,color:"#7dd3fc",fontStyle:"italic",marginTop:6,paddingLeft:14,paddingBottom:8}},"Wed PM always closed."))
+  );}
+
 function TOPanel(props){
-var to=props.to,tog=props.tog,cc=props.cc,open=props.open,setOpen=props.setOpen;
-var grps=[{lbl:"RNs",type:"rn",ppl:RNS},{lbl:"MEAs",type:"mea",ppl:MEAS}];
-var cols=[];DAYS.forEach(function(d){SHIFTS.forEach(function(s){if(cOpen(cc,d,s))cols.push({d:d,s:s});});});
-return h("div",{className:"pnl-rose"},
-h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #fecdd3":"none"},onClick:function(){setOpen(!open);}},
-h("span",{style:{fontSize:13,fontWeight:700,color:"#be123c"}},"🗓 Time Off"),
-h("span",{style:{fontSize:11,fontWeight:700,color:"#fda4af"}},open?"▲":"▼")),
-open&&h("div",{className:"pnl-bd"},
-grps.map(function(g){return h("div",{key:g.type,style:{marginBottom:14}},
-h("p",{style:{fontSize:9,fontWeight:700,color:"#fb7185",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}},g.lbl),
-h("div",{className:"scrl"},h("table",{style:{fontSize:11,borderCollapse:"collapse"}},
-h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingRight:8,minWidth:76}}),
-cols.map(function(col){return h("th",{key:col.d+col.s,style:{textAlign:"center",padding:"0 3px 4px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap"}},h("div",null,col.d.slice(0,3)),h("div",{style:{color:col.s==="AM"?"#0ea5e9":"#f97316"}},col.s));}))),
-h("tbody",null,g.ppl.map(function(person){return h("tr",{key:person,style:{borderTop:"1px solid #fecdd3"}},
-h("td",{style:{padding:"5px 8px 5px 0",fontWeight:600,color:"#334155",whiteSpace:"nowrap"}},person,g.type==="rn"&&person==="Kathy"&&h("span",{style:{display:"block",fontSize:9,color:"#94a3b8",fontWeight:400}},"WFH Thu")),
-cols.map(function(col){var su=g.type==="rn"&&isSU(person,col.d);var chk=su||isTO(to,g.type,person,col.d,col.s);return h("td",{key:col.d+col.s,style:{textAlign:"center",padding:"5px 3px"}},su?h("span",{style:{color:"#cbd5e1"}},"✕"):h("input",{type:"checkbox",checked:chk,onChange:function(){tog(g.type,person,col.d,col.s);},style:{width:15,height:15,accentColor:"#e11d48"}}));})
-);})))),
-h("p",{style:{fontSize:9,color:"#fda4af",fontStyle:"italic",paddingTop:4}},"✕=permanent. Kathy Thu WFH can still be marked time-off.")
-));}
+  var to=props.to,tog=props.tog,cc=props.cc,open=props.open,setOpen=props.setOpen;
+  var grps=[{lbl:"RNs",type:"rn",ppl:RNS},{lbl:"MEAs",type:"mea",ppl:MEAS}];
+  var cols=[];DAYS.forEach(function(d){SHIFTS.forEach(function(s){if(cOpen(cc,d,s))cols.push({d:d,s:s});});});
+  return h("div",{className:"pnl-rose no-print"},
+    h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #fecdd3":"none"},onClick:function(){setOpen(!open);}},h("span",{style:{fontSize:13,fontWeight:700,color:"#be123c"}},"🗓 Time Off"),h("span",{style:{fontSize:11,fontWeight:700,color:"#fda4af"}},open?"▲":"▼")),
+    open&&h("div",{className:"pnl-bd"},grps.map(function(g){return h("div",{key:g.type,style:{marginBottom:14}},
+      h("p",{style:{fontSize:9,fontWeight:700,color:"#fb7185",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:6}},g.lbl),
+      h("div",{className:"scrl"},h("table",{style:{fontSize:11,borderCollapse:"collapse"}},
+        h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingRight:8,minWidth:76}}),cols.map(function(col){return h("th",{key:col.d+col.s,style:{textAlign:"center",padding:"0 3px 4px",color:"#94a3b8",fontWeight:600,whiteSpace:"nowrap"}},h("div",null,col.d.slice(0,3)),h("div",{style:{color:col.s==="AM"?"#0ea5e9":"#f97316"}},col.s));}))),
+        h("tbody",null,g.ppl.map(function(person){return h("tr",{key:person,style:{borderTop:"1px solid #fecdd3"}},
+          h("td",{style:{padding:"5px 8px 5px 0",fontWeight:600,color:"#334155",whiteSpace:"nowrap"}},person,g.type==="rn"&&person==="Kathy"&&h("span",{style:{display:"block",fontSize:9,color:"#94a3b8",fontWeight:400}},"WFH Thu")),
+          cols.map(function(col){var su=g.type==="rn"&&isSU(person,col.d);var chk=su||isTO(to,g.type,person,col.d,col.s);return h("td",{key:col.d+col.s,style:{textAlign:"center",padding:"5px 3px"}},su?h("span",{style:{color:"#cbd5e1"}},"✕"):h("input",{type:"checkbox",checked:chk,onChange:function(){tog(g.type,person,col.d,col.s);},style:{width:15,height:15,accentColor:"#e11d48"}}));})
+        );}))
+      ))
+    );}),h("p",{style:{fontSize:9,color:"#fda4af",fontStyle:"italic",paddingTop:4}},"✕=permanent. Kathy Thu WFH can still be marked time-off."))
+  );}
+
 function Totals(props){
-var hist=props.hist,wr=props.wr,mwr=props.mwr,onClear=props.onClear,tab=props.tab,setTab=props.setTab;
-var rnR=["Triage","Clinic","BP Clinic","Admin"];var mR=["Provider MEA","Blood Draw","Float","Admin"];
-return h("div",{className:"pnl-wht"},
-h("div",{style:{padding:"8px 12px",borderBottom:"1px solid #f1f5f9",display:"flex",alignItems:"center",justifyContent:"space-between"}},
-h("div",{style:{display:"flex",gap:4}},["rn","mea"].map(function(t){return h("button",{key:t,className:"btn",style:{background:tab===t?"#4f46e5":"transparent",color:tab===t?"#fff":"#64748b"},onClick:function(){setTab(t);}},t==="rn"?"RN Totals":"MEA Totals");})),
-h("div",{style:{display:"flex",gap:8,alignItems:"center"}},
-h("span",{style:{fontSize:11,color:"#94a3b8"}},hist.weeks+" wk"+(hist.weeks!==1?"s":"")),
-h("button",{onClick:onClear,style:{fontSize:11,color:"#ef4444",background:"none",border:"none",textDecoration:"underline",cursor:"pointer"}},"Clear"))),
-h("div",{className:"scrl"},
-tab==="rn"?h("table",{className:"tbl"},
-h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingLeft:12}},"RN"),rnR.map(function(r){return h("th",{key:r},r);}),h("th",{style:{color:"#6366f1"}},"This Wk"))),
-h("tbody",null,RNS.map(function(rn){var hv=(hist.rnRoles&&hist.rnRoles[rn])||{};var wv=(wr&&wr[rn])||{};return h("tr",{key:rn},
-h("td",{style:{textAlign:"left",paddingLeft:12,fontWeight:600,color:"#334155",borderTop:"1px solid #f8fafc"}},rn),
-rnR.map(function(role){return h("td",{key:role,style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},(hv[role]||0)),(wv[role]||0)>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wv[role]));}),
-h("td",{style:{color:"#4f46e5",fontWeight:700,borderTop:"1px solid #f8fafc"}},Object.keys(wv).reduce(function(s,k){return s+wv[k];},0)));}))):
-h("table",{className:"tbl"},
-h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingLeft:12}},"MEA"),h("th",null,"Total"),mR.map(function(r){return h("th",{key:r},r);}),h("th",{style:{color:"#6366f1"}},"This Wk"))),
-h("tbody",null,MEAS.map(function(mea){var hs=(hist.meaShifts&&hist.meaShifts[mea])||0;var hr=(hist.meaRoles&&hist.meaRoles[mea])||{};var wv=(mwr&&mwr[mea])||{};var wt=Object.keys(wv).reduce(function(s,k){return s+wv[k];},0);return h("tr",{key:mea},
-h("td",{style:{textAlign:"left",paddingLeft:12,fontWeight:600,color:"#334155",borderTop:"1px solid #f8fafc"}},mea),
-h("td",{style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},hs),wt>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wt)),
-mR.map(function(role){return h("td",{key:role,style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},(hr[role]||0)),(wv[role]||0)>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wv[role]));}),
-h("td",{style:{color:"#4f46e5",fontWeight:700,borderTop:"1px solid #f8fafc"}},wt));}))));}
+  var hist=props.hist,wr=props.wr,mwr=props.mwr,onClear=props.onClear,tab=props.tab,setTab=props.setTab;
+  var rnR=["Triage","Clinic","BP Clinic","Admin","Special Assignment"];
+  var mR=["Provider MEA","Blood Draw","Float","Admin","Special Assignment"];
+  return h("div",{className:"pnl-wht no-print"},
+    h("div",{style:{padding:"8px 12px",borderBottom:"1px solid #f1f5f9",display:"flex",alignItems:"center",justifyContent:"space-between"}},
+      h("div",{style:{display:"flex",gap:4}},["rn","mea"].map(function(t){return h("button",{key:t,className:"btn",style:{background:tab===t?"#4f46e5":"transparent",color:tab===t?"#fff":"#64748b"},onClick:function(){setTab(t);}},t==="rn"?"RN Totals":"MEA Totals");})),
+      h("div",{style:{display:"flex",gap:8,alignItems:"center"}},h("span",{style:{fontSize:11,color:"#94a3b8"}},hist.weeks+" wk"+(hist.weeks!==1?"s":"")),h("button",{onClick:onClear,style:{fontSize:11,color:"#ef4444",background:"none",border:"none",textDecoration:"underline",cursor:"pointer"}},"Clear"))
+    ),
+    h("div",{className:"scrl"},tab==="rn"?h("table",{className:"tbl"},
+      h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingLeft:12}},"RN"),rnR.map(function(r){return h("th",{key:r},r);}),h("th",{style:{color:"#6366f1"}},"This Wk"))),
+      h("tbody",null,RNS.map(function(rn){var hv=(hist.rnRoles&&hist.rnRoles[rn])||{};var wv=(wr&&wr[rn])||{};return h("tr",{key:rn},h("td",{style:{textAlign:"left",paddingLeft:12,fontWeight:600,color:"#334155",borderTop:"1px solid #f8fafc"}},rn),rnR.map(function(role){return h("td",{key:role,style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},(hv[role]||0)),(wv[role]||0)>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wv[role]));}),h("td",{style:{color:"#4f46e5",fontWeight:700,borderTop:"1px solid #f8fafc"}},Object.keys(wv).reduce(function(s,k){return s+wv[k];},0)));}))
+    ):h("table",{className:"tbl"},
+      h("thead",null,h("tr",null,h("th",{style:{textAlign:"left",paddingLeft:12}},"MEA"),h("th",null,"Total"),mR.map(function(r){return h("th",{key:r},r);}),h("th",{style:{color:"#6366f1"}},"This Wk"))),
+      h("tbody",null,MEAS.map(function(mea){var hs=(hist.meaShifts&&hist.meaShifts[mea])||0;var hr=(hist.meaRoles&&hist.meaRoles[mea])||{};var wv=(mwr&&mwr[mea])||{};var wt=Object.keys(wv).reduce(function(s,k){return s+wv[k];},0);return h("tr",{key:mea},h("td",{style:{textAlign:"left",paddingLeft:12,fontWeight:600,color:"#334155",borderTop:"1px solid #f8fafc"}},mea),h("td",{style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},hs),wt>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wt)),mR.map(function(role){return h("td",{key:role,style:{borderTop:"1px solid #f8fafc"}},h("span",{style:{color:"#475569"}},(hr[role]||0)),(wv[role]||0)>0&&h("span",{style:{color:"#6366f1",fontSize:10,marginLeft:2}},"+"+wv[role]));}),h("td",{style:{color:"#4f46e5",fontWeight:700,borderTop:"1px solid #f8fafc"}},wt));}))
+    ))
+  );}
+
 function ExportPanel(props){
-var text=props.text,open=props.open,setOpen=props.setOpen;
-return h("div",{className:"pnl-wht"},
-h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #e2e8f0":"none"},onClick:function(){setOpen(!open);}},
-h("div",{style:{display:"flex",alignItems:"center",gap:8}},
-h("span",{style:{fontSize:13,fontWeight:700,color:"#334155"}},"📋 Export Schedule"),
-h("span",{style:{fontSize:11,color:"#94a3b8"}},"Copy as text")),
-h("span",{style:{fontSize:11,fontWeight:700,color:"#94a3b8"}},open?"▲":"▼")),
-open&&h("div",{style:{padding:"0 12px 12px"}},
-h("textarea",{className:"export-box",readOnly:true,value:text}),
-h("p",{style:{fontSize:10,color:"#94a3b8",marginTop:6}},"Tap inside the text box, then select all and copy.")));}
+  var text=props.text,open=props.open,setOpen=props.setOpen;
+  var cpS=useState(false);var cp=cpS[0];var setCp=cpS[1];
+  function doCopy(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){setCp(true);setTimeout(function(){setCp(false);},2000);}).catch(fallbackCopy);}else{fallbackCopy();}
+  }
+  function fallbackCopy(){var ta=document.querySelector(".export-box");if(ta){ta.select();ta.setSelectionRange(0,99999);try{document.execCommand("copy");setCp(true);setTimeout(function(){setCp(false);},2000);}catch(e){}}}
+  return h("div",{className:"pnl-wht no-print"},
+    h("button",{className:"pnl-hd",style:{borderBottom:open?"1px solid #e2e8f0":"none"},onClick:function(){setOpen(!open);}},
+      h("div",{style:{display:"flex",alignItems:"center",gap:8}},h("span",{style:{fontSize:13,fontWeight:700,color:"#334155"}},"📋 Export Schedule"),h("span",{style:{fontSize:11,color:"#94a3b8"}},"Copy week as text")),
+      h("span",{style:{fontSize:11,fontWeight:700,color:"#94a3b8"}},open?"▲":"▼")),
+    open&&h("div",{style:{padding:"0 14px 14px"}},
+      h("div",{style:{display:"flex",justifyContent:"flex-end",marginBottom:8}},h("button",{className:"btn",style:{background:cp?"#059669":"#4f46e5",color:"#fff"},onClick:doCopy},cp?"✓ Copied!":"Copy to Clipboard")),
+      h("textarea",{className:"export-box",readOnly:true,value:text,onClick:function(e){e.target.select();}}),
+      h("p",{style:{fontSize:10,color:"#94a3b8",marginTop:6}},"Click inside the box to select all, or use the button above.")));}
+
 function MEARow(props){
-var mea=props.mea,md=props.md,pl=props.pl,onChange=props.onChange,isOut=props.isOut;
-var role=(md&&md.role)||null;var prov=(md&&md.provider)||null;
-return h("div",{style:{marginBottom:8,opacity:isOut?0.5:1}},
-h("div",{style:{display:"flex",alignItems:"center",gap:6}},
-h("span",{style:{fontSize:13,fontWeight:600,color:"#334155",width:72,flexShrink:0}},mea),
-h("div",{style:{display:"flex",alignItems:"center",gap:6,flex:1,minWidth:0}},
-h(Badge,{role:role}),
-isOut?h("span",{style:{marginLeft:"auto",fontSize:11,color:"#e11d48",fontWeight:600}},"Time Off"):
-h("select",{className:"sel",value:role||"Unassigned",onChange:function(ev){var v=ev.target.value;onChange({role:v==="Unassigned"?null:v,provider:v==="Provider MEA"?prov:null});}},
-MEA_ROLES.map(function(r){return h("option",{key:r},r);})))),
-!isOut&&role==="Provider MEA"&&pl.length>0&&h("div",{style:{marginLeft:72,display:"flex",flexWrap:"wrap",gap:4,marginTop:4}},
-pl.map(function(p){var sel=prov===p;var pf=DYAD[p];var pIP=pf===mea;var pIB=sel&&pf&&pf!==mea;
-return h("button",{key:p,className:"pbtn",style:{background:sel?(pIB?"#ffedd5":"#0d9488"):"#fff",color:sel?(pIB?"#9a3412":"#fff"):"#64748b",borderColor:sel?(pIB?"#fed7aa":"#0d9488"):"#cbd5e1"},onClick:function(){onChange({role:role,provider:prov===p?null:p});}},
-(pIP&&sel?"★ ":pIB?"⚑ ":"")+p);}),
-!prov&&h("span",{style:{fontSize:10,color:"#f59e0b"}},"Select provider"),
-prov&&DYAD[prov]&&DYAD[prov]!==mea&&h("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad break")));}
+  var mea=props.mea,md=props.md,pl=props.pl,onChange=props.onChange,isOut=props.isOut;
+  var role=(md&&md.role)||null;var prov=(md&&md.provider)||null;
+  return h("div",{style:{marginBottom:8,opacity:isOut?0.5:1}},
+    h("div",{style:{display:"flex",alignItems:"center",gap:6}},
+      h("span",{style:{fontSize:13,fontWeight:600,color:"#334155",width:72,flexShrink:0}},mea),
+      h("div",{style:{display:"flex",alignItems:"center",gap:6,flex:1,minWidth:0}},h(Badge,{role:role}),
+        isOut?h("span",{style:{marginLeft:"auto",fontSize:11,color:"#e11d48",fontWeight:600}},"Time Off"):
+        h("select",{className:"sel",value:role||"Unassigned",onChange:function(ev){var v=ev.target.value;onChange({role:v==="Unassigned"?null:v,provider:v==="Provider MEA"?prov:null});}},MEA_ROLES.map(function(r){return h("option",{key:r},r);}))
+      )),
+    !isOut&&role==="Provider MEA"&&pl.length>0&&h("div",{style:{marginLeft:72,display:"flex",flexWrap:"wrap",gap:4,marginTop:4}},
+      pl.map(function(p){var sel=prov===p;var pf=DYAD[p];var pIP=pf===mea;var pIB=sel&&pf&&pf!==mea;return h("button",{key:p,className:"pbtn",style:{background:sel?(pIB?"#ffedd5":"#0d9488"):"#fff",color:sel?(pIB?"#9a3412":"#fff"):"#64748b",borderColor:sel?(pIB?"#fed7aa":"#0d9488"):"#cbd5e1"},onClick:function(){onChange({role:role,provider:prov===p?null:p});}},( pIP&&sel?"★ ":pIB?"⚑ ":"")+p);}),
+      !prov&&h("span",{style:{fontSize:10,color:"#f59e0b"}},"Select provider"),
+      prov&&DYAD[prov]&&DYAD[prov]!==mea&&h("span",{style:{fontSize:10,color:"#ea580c",fontWeight:600,marginLeft:4}},"Dyad break")
+    ));}
+
 function ShiftCard(props){
-var day=props.day,shift=props.shift,prov=props.prov,asgn=props.asgn,to=props.to,cc=props.cc,onPC=props.onPC,onRC=props.onRC,onMC=props.onMC;
-var io=cOpen(cc,day,shift);var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
-var slot=asgn[day][shift];var pl=prov[day][shift];
-var isMD=day==="Tuesday"&&shift==="PM";
-var bdE=shift==="AM"&&["Monday","Wednesday","Friday"].indexOf(day)>=0;
-var bpE=(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM");
-if(!io)return h("div",{className:"closed"},h("span",{style:{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.1em"}},day==="Wednesday"&&shift==="PM"?"Clinic Closed":"Shift Cancelled"));
-return h("div",{className:"card"},
-h("div",{style:{padding:10}},
-h("span",{className:"slbl"},"Providers on Shift"),
-h("div",{style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:7}},
-PROVIDERS.map(function(p){var isMB=isMD&&p==="Megan Henry, NP";var on=pl.indexOf(p)>=0;
-return h("button",{key:p,className:"pbtn",disabled:isMB,
-style:{background:on?"#4f46e5":"#fff",color:on?"#fff":"#64748b",borderColor:on?"#4f46e5":"#cbd5e1",opacity:isMB?0.6:1,cursor:isMB?"default":"pointer"},
-onClick:function(){if(isMD&&p==="Megan Henry, NP")return;var u=pl.indexOf(p)>=0?pl.filter(function(x){return x!==p;}):pl.concat([p]);onPC(day,shift,u);}},
-p+(isMB&&on?" 🔒":isMB?" ✕":""));})),
-h("div",{style:{display:"flex",flexWrap:"wrap",gap:5}},
-bdE&&h("span",{className:"chip",style:{background:hasBD?"#fee2e2":"#f8fafc",color:hasBD?"#991b1b":"#94a3b8",borderColor:hasBD?"#fecaca":"#e2e8f0",textDecoration:hasBD?"none":"line-through"}},"🩸 Blood Draw"),
-bpE&&h("span",{className:"chip",style:{background:hasBP?"#fce7f3":"#f8fafc",color:hasBP?"#9d174d":"#94a3b8",borderColor:hasBP?"#fbcfe8":"#e2e8f0",textDecoration:hasBP?"none":"line-through"}},"💉 BP Clinic"))),
-h("div",{className:"csec"},
-h("span",{className:"slbl"},"RN Assignments"),
-RNS.map(function(rn){
-var su=isSU(rn,day);var ol=isTO(to,"rn",rn,day,shift);var wfh=isWFH(rn,day);var dim=su||ol;var role=slot.rn[rn];
-return h("div",{key:rn,style:{display:"flex",alignItems:"center",gap:6,marginBottom:5,opacity:dim?0.45:1}},
-h("div",{style:{width:56,flexShrink:0}},
-h("span",{style:{fontSize:13,fontWeight:600,color:"#334155"}},rn),
-wfh&&h("span",{style:{display:"block",fontSize:9,color:"#94a3b8"}},"WFH Thu")),
-h("div",{style:{display:"flex",alignItems:"center",gap:6,flex:1,minWidth:0}},
-h(Badge,{role:role}),
-dim?h("span",{style:{marginLeft:"auto",fontSize:11,color:"#e11d48",fontWeight:600}},su?"N/A":"Time Off"):
-h("select",{className:"sel",value:role||"Off",onChange:function(ev){onRC(day,shift,rn,ev.target.value==="Off"?null:ev.target.value);}},
-RN_ROLES.map(function(r){return h("option",{key:r},r);}))));})),
-h("div",{className:"csec"},
-h("span",{className:"slbl"},"MEA Assignments"),
-MEAS.map(function(mea){return h(MEARow,{key:mea,mea:mea,md:slot.mea[mea],pl:pl,isOut:isTO(to,"mea",mea,day,shift),onChange:function(u){onMC(day,shift,mea,u);}});})));}
+  var day=props.day,shift=props.shift,prov=props.prov,asgn=props.asgn,to=props.to,cc=props.cc;
+  var onPC=props.onPC,onRC=props.onRC,onMC=props.onMC,note=props.note,onNote=props.onNote;
+  var io=cOpen(cc,day,shift);var hasBD=cBD(cc,day,shift);var hasBP=cBP(cc,day,shift);
+  var slot=asgn[day][shift];var pl=prov[day][shift];
+  var isMD=day==="Tuesday"&&shift==="PM";var bdE=shift==="AM"&&["Monday","Wednesday","Friday"].indexOf(day)>=0;var bpE=(day==="Wednesday"&&shift==="AM")||(day==="Friday"&&shift==="PM");
+  if(!io)return h("div",{className:"closed"},h("span",{style:{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.1em"}},day==="Wednesday"&&shift==="PM"?"Clinic Closed":"Shift Cancelled"));
+  return h("div",{className:"card"},
+    h("div",{style:{padding:10}},
+      h("span",{className:"slbl no-print"},"Providers on Shift"),
+      h("div",{className:"no-print",style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:7}},PROVIDERS.map(function(p){var isMB=isMD&&p==="Megan Henry, NP";var on=pl.indexOf(p)>=0;return h("button",{key:p,className:"pbtn",disabled:isMB,style:{background:on?"#4f46e5":"#fff",color:on?"#fff":"#64748b",borderColor:on?"#4f46e5":"#cbd5e1",opacity:isMB?0.6:1,cursor:isMB?"default":"pointer"},onClick:function(){if(isMD&&p==="Megan Henry, NP")return;var u=pl.indexOf(p)>=0?pl.filter(function(x){return x!==p;}):pl.concat([p]);onPC(day,shift,u);}},p+(isMB&&on?" 🔒":isMB?" ✕":""));})),
+      h("div",{className:"no-print",style:{display:"flex",flexWrap:"wrap",gap:5}},bdE&&h("span",{className:"chip",style:{background:hasBD?"#fee2e2":"#f8fafc",color:hasBD?"#991b1b":"#94a3b8",borderColor:hasBD?"#fecaca":"#e2e8f0",textDecoration:hasBD?"none":"line-through"}},"🩸 Blood Draw"),bpE&&h("span",{className:"chip",style:{background:hasBP?"#fce7f3":"#f8fafc",color:hasBP?"#9d174d":"#94a3b8",borderColor:hasBP?"#fbcfe8":"#e2e8f0",textDecoration:hasBP?"none":"line-through"}},"💉 BP Clinic"))
+    ),
+    h("div",{className:"csec"},
+      h("span",{className:"slbl"},"RN Assignments"),
+      RNS.map(function(rn){var su=isSU(rn,day);var ol=isTO(to,"rn",rn,day,shift);var wfh=isWFH(rn,day);var dim=su||ol;var role=slot.rn[rn];
+        return h("div",{key:rn,style:{display:"flex",alignItems:"center",gap:6,marginBottom:5,opacity:dim?0.45:1}},
+          h("div",{style:{width:56,flexShrink:0}},h("span",{style:{fontSize:13,fontWeight:600,color:"#334155"}},rn),wfh&&h("span",{style:{display:"block",fontSize:9,color:"#94a3b8"}},"WFH Thu")),
+          h("div",{style:{display:"flex",alignItems:"center",gap:6,flex:1,minWidth:0}},h(Badge,{role:role}),
+            dim?h("span",{style:{marginLeft:"auto",fontSize:11,color:"#e11d48",fontWeight:600}},su?"N/A":"Time Off"):
+            h("select",{className:"sel no-print",value:role||"Off",onChange:function(ev){onRC(day,shift,rn,ev.target.value==="Off"?null:ev.target.value);}},RN_ROLES.map(function(r){return h("option",{key:r},r);}))
+          ));})),
+    h("div",{className:"csec"},
+      h("span",{className:"slbl"},"MEA Assignments"),
+      MEAS.map(function(mea){return h(MEARow,{key:mea,mea:mea,md:slot.mea[mea],pl:pl,isOut:isTO(to,"mea",mea,day,shift),onChange:function(u){onMC(day,shift,mea,u);}});})),
+    h("div",{className:"csec"},
+      h("span",{className:"slbl"},"Notes"),
+      h("textarea",{className:"notes-input",rows:2,placeholder:"Shift notes...",value:note||"",onChange:function(e){onNote(day,shift,e.target.value);}}))
+  );}
+
 function App(){
-var ic=mkCC();var S=useState;
-var ccS=S(ic);var cc=ccS[0];var setCC=ccS[1];
-var pvS=S(function(){return mkProv(ic);});var pv=pvS[0];var setPV=pvS[1];
-var asS=S(mkAsgn);var as=asS[0];var setAS=asS[1];
-var toS=S(mkTO);var to=toS[0];var setTO=toS[1];
-var cxS=S([]);var cx=cxS[0];var setCX=cxS[1];
-var hiS=S(loadH);var hi=hiS[0];var setHI=hiS[1];
-var wrS=S({});var wr=wrS[0];var setWR=wrS[1];
-var mwS=S({});var mw=mwS[0];var setMW=mwS[1];
-var gnS=S(false);var gn=gnS[0];var setGN=gnS[1];
-var dyS=S("Monday");var dy=dyS[0];var setDY=dyS[1];
-var stS=S(false);var st=stS[0];var setST=stS[1];
-var ttS=S("rn");var tt=ttS[0];var setTT=ttS[1];
-var woS=S(true);var wo=woS[0];var setWO=woS[1];
-var tpS=S(false);var tp=tpS[0];var setTP=tpS[1];
-var exS=S(false);var ex=exS[0];var setEX=exS[1];
-function updCC(d,s,f){setCC(function(prev){var nd=Object.assign({},prev[d]);nd[s]=Object.assign({},prev[d][s]);nd[s][f]=!nd[s][f];var nu=Object.assign({},prev);nu[d]=nd;if(f==="megan"){var nv=nd[s][f];setPV(function(pp){var np=Object.assign({},pp[d]);np[s]=nv?(pp[d][s].indexOf("Megan Henry, NP")>=0?pp[d][s]:pp[d][s].concat(["Megan Henry, NP"])):pp[d][s].filter(function(p){return p!=="Megan Henry, NP";});var npp=Object.assign({},pp);npp[d]=np;return npp;});}return nu;});setGN(false);}
-function updTO(type,person,d,s){setTO(function(prev){var nt=Object.assign({},prev);var ng=Object.assign({},prev[type]);var np=Object.assign({},prev[type][person]);var nd=Object.assign({},prev[type][person][d]);nd[s]=!nd[s];np[d]=nd;ng[person]=np;nt[type]=ng;return nt;});setGN(false);}
-function updPC(d,s,u){setPV(function(prev){var np=Object.assign({},prev[d]);np[s]=u;var npp=Object.assign({},prev);npp[d]=np;return npp;});setGN(false);}
-function updRC(d,s,rn,role){setAS(function(prev){var ns=Object.assign({},prev[d][s]);var nr=Object.assign({},ns.rn);nr[rn]=role;ns.rn=nr;var nd=Object.assign({},prev[d]);nd[s]=ns;var na=Object.assign({},prev);na[d]=nd;return na;});}
-function updMC(d,s,mea,u){setAS(function(prev){var ns=Object.assign({},prev[d][s]);var nm=Object.assign({},ns.mea);nm[mea]=u;ns.mea=nm;var nd=Object.assign({},prev[d]);nd[s]=ns;var na=Object.assign({},prev);na[d]=nd;return na;});}
-function cWR(a){var r={};RNS.forEach(function(rn){r[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0};});var m={};MEAS.forEach(function(mea){m[mea]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0};});DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;RNS.forEach(function(rn){var role=a[day][shift].rn[rn];if(role&&role!=="Off"&&role!=="Time Off"&&r[rn][role]!==undefined)r[rn][role]++;});MEAS.forEach(function(mea){var role=a[day][shift].mea[mea]&&a[day][shift].mea[mea].role;if(role&&role!=="Time Off"&&m[mea][role]!==undefined)m[mea][role]++;});});});return{r:r,m:m};}
-function doGen(){var res=generate(pv,hi,to,cc);setAS(res.assignments);setWR(res.weeklyRoles);setMW(res.meaWeeklyRoles);setCX(detect(res.assignments,pv,to,cc));setGN(true);}
-function doChk(){setCX(detect(as,pv,to,cc));var res=cWR(as);setWR(res.r);setMW(res.m);}
-function doCommit(){var res=cWR(as);var r=res.r;var m=res.m;var bp=Object.assign({},(hi.bpClinic||{}));var ms=Object.assign({},(hi.meaShifts||{}));RNS.forEach(function(rn){if(!bp[rn])bp[rn]=0;});MEAS.forEach(function(mea){if(!ms[mea])ms[mea]=0;});DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;RNS.forEach(function(rn){if(as[day][shift].rn[rn]==="BP Clinic")bp[rn]++;});MEAS.forEach(function(mea){var role=as[day][shift].mea[mea]&&as[day][shift].mea[mea].role;if(role&&role!=="Time Off")ms[mea]++;});});});var pm=hi.meaRoles||{};var nm={};MEAS.forEach(function(mea){var p=pm[mea]||{};nm[mea]={"Provider MEA":(p["Provider MEA"]||0)+(m[mea]["Provider MEA"]||0),"Blood Draw":(p["Blood Draw"]||0)+(m[mea]["Blood Draw"]||0),Float:(p.Float||0)+(m[mea].Float||0),Admin:(p.Admin||0)+(m[mea].Admin||0)};});var nh={weeks:hi.weeks+1,bpClinic:bp,meaShifts:ms,meaRoles:nm,rnRoles:{}};RNS.forEach(function(rn){var p=(hi.rnRoles&&hi.rnRoles[rn])||{};nh.rnRoles[rn]={Triage:(p.Triage||0)+(r[rn].Triage||0),Clinic:(p.Clinic||0)+(r[rn].Clinic||0),"BP Clinic":(p["BP Clinic"]||0)+(r[rn]["BP Clinic"]||0),Admin:(p.Admin||0)+(r[rn].Admin||0)};});saveH(nh);setHI(nh);alert("✓ Week committed to running totals.");}
-function doReset(){var c=mkCC();setCC(c);setPV(mkProv(c));setAS(mkAsgn());setTO(mkTO());setCX([]);setWR({});setMW({});setGN(false);}
-function doClear(){if(confirm("Clear all history?")){var e={rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};saveH(e);setHI(e);}}
-var exportText=buildExport(as,pv,cc);
-var dyad=cx.filter(function(c){return c.isDyad;});
-var hard=cx.filter(function(c){return!c.isDyad;});
-var wkC=hard.filter(function(c){return c.shift==="Weekly";});
-var shC=hard.filter(function(c){return c.shift!=="Weekly";});
-var toc=[].concat(RNS,MEAS).reduce(function(t,p){var type=RNS.indexOf(p)>=0?"rn":"mea";return t+DAYS.reduce(function(d2,d3){return d2+SHIFTS.reduce(function(s2,s3){return s2+(isTO(to,type,p,d3,s3)?1:0);},0);},0);},0);
-return h("div",null,
-h("div",{className:"hdr"},
-h("div",null,h("div",{className:"h1"},"Clinic Scheduler"),h("div",{className:"sub"},"Mon–Fri · AM & PM")),
-h("div",{className:"btnrow"},
-h("button",{className:"btn",style:{background:"#fffbeb",color:"#92400e",border:"1px solid #fcd34d"},onClick:doChk},"Check"),
-h("button",{className:"btn",style:{background:"#4f46e5",color:"#fff"},onClick:doGen},"✦ Generate"),
-h("button",{className:"btn",style:{background:"#059669",color:"#fff"},onClick:doCommit},"✓ Commit"),
-h("button",{className:"btn",style:{background:st?"#334155":"#fff",color:st?"#fff":"#475569",border:"1px solid #cbd5e1"},onClick:function(){setST(function(v){return!v;});}},st?"Hide Totals":"Totals"),
-h("button",{className:"btn",style:{background:"#fff",color:"#475569",border:"1px solid #cbd5e1"},onClick:doReset},"Reset"))),
-h("div",{className:"content"},
-h(SetupPanel,{cc:cc,tog:updCC,open:wo,setOpen:setWO}),
-h(TOPanel,{to:to,tog:updTO,cc:cc,open:tp,setOpen:setTP}),
-toc>0&&!gn&&h("p",{style:{fontSize:11,color:"#e11d48",fontWeight:500}},toc+" time-off shift"+(toc!==1?"s":"")+" marked — tap Generate to apply."),
-hard.length>0&&h("div",{className:"pnl-red"},
-h("p",{style:{fontSize:13,fontWeight:700,color:"#b91c1c",marginBottom:6}},"⚠ "+hard.length+" Conflict"+(hard.length!==1?"s":"")),
-wkC.length>0&&h("div",null,
-h("p",{style:{fontSize:9,fontWeight:700,color:"#ef4444",textTransform:"uppercase",marginBottom:3}},"Weekly"),
-wkC.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#b91c1c",marginBottom:2}},"• "+c.msg);})),
-shC.length>0&&h("div",{style:{marginTop:6}},
-h("p",{style:{fontSize:9,fontWeight:700,color:"#ef4444",textTransform:"uppercase",marginBottom:3}},"By Shift"),
-shC.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#b91c1c",marginBottom:2}},h("b",null,"["+c.shift+"] "),c.msg);}))),
-dyad.length>0&&h("div",{className:"pnl-ora"},
-h("p",{style:{fontSize:13,fontWeight:700,color:"#c2410c",marginBottom:4}},"⚑ "+dyad.length+" Dyad Break"+(dyad.length!==1?"s":"")),
-dyad.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#c2410c",marginBottom:2}},h("b",null,"["+c.shift+"] "),c.msg);})),
-gn&&cx.length===0&&h("div",{className:"pnl-grn"},"✓ Schedule generated — no conflicts or dyad breaks."),
-st&&h(Totals,{hist:hi,wr:wr,mwr:mw,onClear:doClear,tab:tt,setTab:setTT}),
-h(ExportPanel,{text:exportText,open:ex,setOpen:setEX}),
-h("div",{className:"tabs"},
-DAYS.map(function(d){return h("button",{key:d,className:"tab",style:{background:d===dy?"#4f46e5":"transparent",color:d===dy?"#fff":"#64748b"},onClick:function(){setDY(d);}},d.slice(0,3));})),
-h("div",{className:"g2"},
-SHIFTS.map(function(shift){return h("div",{key:shift},
-h("div",{style:{display:"flex",alignItems:"center",gap:5,marginBottom:7}},
-h("span",{style:{fontSize:13,fontWeight:700,color:"#1e293b"}},shift==="AM"?"Morning":"Afternoon"),
-h("span",{style:{fontSize:10,fontWeight:700,padding:"2px 7px",borderRadius:9999,background:shift==="AM"?"#e0f2fe":"#ffedd5",color:shift==="AM"?"#0369a1":"#c2410c"}},shift),
-!cOpen(cc,dy,shift)&&h("span",{style:{fontSize:11,color:"#94a3b8"}},"— cancelled")),
-h(ShiftCard,{day:dy,shift:shift,prov:pv,asgn:as,to:to,cc:cc,onPC:updPC,onRC:updRC,onMC:updMC}));})),
-h("div",{className:"pnl-wht",style:{padding:10}},
-h("div",{style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:6}},
-h("span",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",alignSelf:"center"}},"Roles"),
-Object.keys(BS).filter(function(k){return k!=="Unassigned";}).map(function(role){var s=BS[role];return h("span",{key:role,className:"bdg",style:{background:s.bg,color:s.c,borderColor:s.b,fontSize:10}},role);})),
-h("div",{style:{display:"flex",flexWrap:"wrap",gap:8,fontSize:11,color:"#64748b",marginBottom:4}},
-h("span",null,h("b",{style:{color:"#0d9488"}},"★")," preferred dyad"),
-h("span",null,h("b",{style:{color:"#ea580c"}},"⚑")," dyad break"),
-h("span",null,h("b",null,"WFH")," Kathy Thu")),
-h("p",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:3}},"Preferred Dyads"),
-h("div",{style:{display:"flex",flexWrap:"wrap",gap:10,fontSize:10,color:"#94a3b8"}},
-Object.keys(DYAD).filter(function(p){return DYAD[p];}).map(function(p){return h("span",{key:p},p+" → "+DYAD[p]);}))),
-h("p",{style:{fontSize:11,color:"#94a3b8",textAlign:"center",paddingBottom:14}},"Press ",h("b",null,"✓ Commit")," to save this week to running totals.")));}
+  var S=useState;
+  /* load saved week on first render */
+  var initW=loadWeekState();
+  var ccS=S(initW.cc);var cc=ccS[0];var setCC=ccS[1];
+  var pvS=S(initW.pv);var pv=pvS[0];var setPV=pvS[1];
+  var asS=S(initW.as);var as=asS[0];var setAS=asS[1];
+  var toS=S(initW.to);var to=toS[0];var setTO=toS[1];
+  var ntS=S(initW.notes);var nt=ntS[0];var setNT=ntS[1];
+  var mdS=S(initW.monDate);var md=mdS[0];var setMD=mdS[1];
+  var cxS=S([]);var cx=cxS[0];var setCX=cxS[1];
+  var hiS=S(loadH);var hi=hiS[0];var setHI=hiS[1];
+  var wrS=S({});var wr=wrS[0];var setWR=wrS[1];
+  var mwS=S({});var mw=mwS[0];var setMW=mwS[1];
+  var gnS=S(false);var gn=gnS[0];var setGN=gnS[1];
+  var dyS=S("Monday");var dy=dyS[0];var setDY=dyS[1];
+  var stS=S(false);var st=stS[0];var setST=stS[1];
+  var ttS=S("rn");var tt=ttS[0];var setTT=ttS[1];
+  var woS=S(false);var wo=woS[0];var setWO=woS[1];
+  var tpS=S(false);var tp=tpS[0];var setTP=tpS[1];
+  var exS=S(false);var ex=exS[0];var setEX=exS[1];
+  /* undo stack: array of {as} snapshots, max 10 */
+  var unS=S([]);var un=unS[0];var setUN=unS[1];
+  /* snapshot from last Generate for Revert */
+  var genSnapS=S(null);var genSnap=genSnapS[0];var setGenSnap=genSnapS[1];
+
+  /* auto-save week state whenever it changes */
+  useEffect(function(){
+    saveW({cc:cc,pv:pv,as:as,to:to,notes:nt,monDate:md});
+  },[cc,pv,as,to,nt,md]);
+
+  function pushUndo(prevAs){
+    setUN(function(stack){var ns=stack.concat([JSON.parse(JSON.stringify(prevAs))]);return ns.slice(-10);});
+  }
+
+  function updCC(d,s,f){setCC(function(prev){var nd=Object.assign({},prev[d]);nd[s]=Object.assign({},prev[d][s]);nd[s][f]=!nd[s][f];var nu=Object.assign({},prev);nu[d]=nd;if(f==="megan"){var nv=nd[s][f];setPV(function(pp){var np=Object.assign({},pp[d]);np[s]=nv?(pp[d][s].indexOf("Megan Henry, NP")>=0?pp[d][s]:pp[d][s].concat(["Megan Henry, NP"])):pp[d][s].filter(function(p){return p!=="Megan Henry, NP";});var npp=Object.assign({},pp);npp[d]=np;return npp;});}return nu;});setGN(false);}
+  function updTO(type,person,d,s){setTO(function(prev){var nt2=Object.assign({},prev);var ng=Object.assign({},prev[type]);var np=Object.assign({},prev[type][person]);var nd=Object.assign({},prev[type][person][d]);nd[s]=!nd[s];np[d]=nd;ng[person]=np;nt2[type]=ng;return nt2;});setGN(false);}
+  function updPC(d,s,u){setPV(function(prev){var np=Object.assign({},prev[d]);np[s]=u;var npp=Object.assign({},prev);npp[d]=np;return npp;});setGN(false);}
+  function updRC(d,s,rn,role){setAS(function(prev){pushUndo(prev);var ns=Object.assign({},prev[d][s]);var nr=Object.assign({},ns.rn);nr[rn]=role;ns.rn=nr;var nd=Object.assign({},prev[d]);nd[s]=ns;var na=Object.assign({},prev);na[d]=nd;return na;});}
+  function updMC(d,s,mea,u){setAS(function(prev){pushUndo(prev);var ns=Object.assign({},prev[d][s]);var nm=Object.assign({},ns.mea);nm[mea]=u;ns.mea=nm;var nd=Object.assign({},prev[d]);nd[s]=ns;var na=Object.assign({},prev);na[d]=nd;return na;});}
+  function updNote(day,shift,val){setNT(function(prev){var nd=Object.assign({},prev);nd[day]=Object.assign({},prev[day]);nd[day][shift]=val;return nd;});}
+
+  function cWR(a){var r={};RNS.forEach(function(rn){r[rn]={Triage:0,Clinic:0,"BP Clinic":0,Admin:0,"Special Assignment":0};});var m={};MEAS.forEach(function(mea){m[mea]={"Provider MEA":0,"Blood Draw":0,Float:0,Admin:0,"Special Assignment":0};});DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;RNS.forEach(function(rn){var role=a[day][shift].rn[rn];if(role&&role!=="Off"&&role!=="Time Off"&&r[rn][role]!==undefined)r[rn][role]++;});MEAS.forEach(function(mea){var role=a[day][shift].mea[mea]&&a[day][shift].mea[mea].role;if(role&&role!=="Time Off"&&m[mea][role]!==undefined)m[mea][role]++;});});});return{r:r,m:m};}
+
+  function doGen(){var res=generate(pv,hi,to,cc);var snap=JSON.parse(JSON.stringify(res.assignments));setGenSnap(snap);setAS(res.assignments);setWR(res.weeklyRoles);setMW(res.meaWeeklyRoles);setCX(detect(res.assignments,pv,to,cc));setGN(true);setUN([]);}
+  function doChk(){setCX(detect(as,pv,to,cc));var res=cWR(as);setWR(res.r);setMW(res.m);}
+  function doUndo(){if(un.length===0)return;var prev=un[un.length-1];setAS(JSON.parse(JSON.stringify(prev)));setUN(function(stack){return stack.slice(0,-1);});}
+  function doRevert(){if(!genSnap){alert("No generated schedule to revert to.");return;}if(!confirm("Revert all assignments to the last generated schedule? Manual changes will be lost."))return;setAS(JSON.parse(JSON.stringify(genSnap)));setUN([]);}
+
+  function doCommit(){
+    var res=cWR(as);var r=res.r;var m=res.m;
+    var bp=Object.assign({},(hi.bpClinic||{}));var ms=Object.assign({},(hi.meaShifts||{}));
+    RNS.forEach(function(rn){if(!bp[rn])bp[rn]=0;});MEAS.forEach(function(mea){if(!ms[mea])ms[mea]=0;});
+    DAYS.forEach(function(day){SHIFTS.forEach(function(shift){if(!cOpen(cc,day,shift))return;RNS.forEach(function(rn){if(as[day][shift].rn[rn]==="BP Clinic")bp[rn]++;});MEAS.forEach(function(mea){var role=as[day][shift].mea[mea]&&as[day][shift].mea[mea].role;if(role&&role!=="Time Off")ms[mea]++;});});});
+    var pm=hi.meaRoles||{};var nm={};
+    MEAS.forEach(function(mea){var p=pm[mea]||{};nm[mea]={"Provider MEA":(p["Provider MEA"]||0)+(m[mea]["Provider MEA"]||0),"Blood Draw":(p["Blood Draw"]||0)+(m[mea]["Blood Draw"]||0),Float:(p.Float||0)+(m[mea].Float||0),Admin:(p.Admin||0)+(m[mea].Admin||0),"Special Assignment":(p["Special Assignment"]||0)+(m[mea]["Special Assignment"]||0)};});
+    var nh={weeks:hi.weeks+1,bpClinic:bp,meaShifts:ms,meaRoles:nm,rnRoles:{}};
+    RNS.forEach(function(rn){var p=(hi.rnRoles&&hi.rnRoles[rn])||{};nh.rnRoles[rn]={Triage:(p.Triage||0)+(r[rn].Triage||0),Clinic:(p.Clinic||0)+(r[rn].Clinic||0),"BP Clinic":(p["BP Clinic"]||0)+(r[rn]["BP Clinic"]||0),Admin:(p.Admin||0)+(r[rn].Admin||0),"Special Assignment":(p["Special Assignment"]||0)+(r[rn]["Special Assignment"]||0)};});
+    saveH(nh);setHI(nh);alert("✓ Week committed to running totals.");
+  }
+
+  function doReset(){if(!confirm("Reset the current week's schedule? The date and running totals will be kept."))return;var c=mkCC();setCC(c);setPV(mkProv(c));setAS(mkAsgn());setTO(mkTO());setNT(mkNotes());setCX([]);setWR({});setMW({});setGN(false);setUN([]);setGenSnap(null);}
+  function doNewWeek(){if(!confirm("Start a new week? This will clear the schedule and the date. Running totals are kept."))return;var c=mkCC();setCC(c);setPV(mkProv(c));setAS(mkAsgn());setTO(mkTO());setNT(mkNotes());setMD("");setCX([]);setWR({});setMW({});setGN(false);setUN([]);setGenSnap(null);clearW();}
+  function doClear(){if(confirm("Clear all running totals history?")){var e={rnRoles:{},bpClinic:{},meaShifts:{},meaRoles:{},weeks:0};saveH(e);setHI(e);}}
+
+  var exportText=buildExport(as,pv,cc,nt,md);
+  var dyad=cx.filter(function(c){return c.isDyad;});var hard=cx.filter(function(c){return!c.isDyad;});
+  var wkC=hard.filter(function(c){return c.shift==="Weekly";});var shC=hard.filter(function(c){return c.shift!=="Weekly";});
+  var toc=[].concat(RNS,MEAS).reduce(function(t,p){var type=RNS.indexOf(p)>=0?"rn":"mea";return t+DAYS.reduce(function(d2,d3){return d2+SHIFTS.reduce(function(s2,s3){return s2+(isTO(to,type,p,d3,s3)?1:0);},0);},0);},0);
+  var wrl=weekRangeLabel(md);
+
+  return h("div",null,
+    /* ── header ── */
+    h("div",{className:"hdr"},
+      h("div",null,
+        h("div",{className:"h1"},"Clinic Scheduler"),
+        h("div",{className:"sub"},wrl?"Week of "+wrl:"Mon–Fri · AM & PM")),
+      h("div",{className:"btnrow"},
+        h("input",{type:"date",className:"date-input",value:md,title:"Set Monday date for this week",onChange:function(e){setMD(e.target.value);}}),
+        h("button",{className:"btn",style:{background:"#fffbeb",color:"#92400e",border:"1px solid #fcd34d"},onClick:doChk},"Check"),
+        h("button",{className:"btn",style:{background:"#4f46e5",color:"#fff"},onClick:doGen},"✦ Generate"),
+        h("button",{className:"btn",style:{background:"#059669",color:"#fff"},onClick:doCommit},"✓ Commit"),
+        h("button",{className:"btn",style:{background:st?"#334155":"#fff",color:st?"#fff":"#475569",border:"1px solid #cbd5e1"},onClick:function(){setST(function(v){return!v;});}},st?"Hide Totals":"Totals"),
+        h("button",{className:"btn",style:{background:"#fff",color:"#6366f1",border:"1px solid #c7d2fe"},onClick:function(){window.print();}},"🖨 Print"),
+        h("button",{className:"btn",style:{background:"#fff",color:"#475569",border:"1px solid #cbd5e1"},onClick:doReset},"Reset"),
+        h("button",{className:"btn",style:{background:"#fff",color:"#475569",border:"1px solid #cbd5e1"},onClick:doNewWeek},"New Week")
+      )),
+    h("div",{className:"content"},
+      /* print-only week label */
+      h("div",{className:"print-week-label"},wrl?"Week of "+wrl:""),
+      h(SetupPanel,{cc:cc,tog:updCC,open:wo,setOpen:setWO}),
+      h(TOPanel,{to:to,tog:updTO,cc:cc,open:tp,setOpen:setTP}),
+      toc>0&&!gn&&h("p",{className:"no-print",style:{fontSize:11,color:"#e11d48",fontWeight:500}},toc+" time-off shift"+(toc!==1?"s":"")+" marked — tap Generate to apply."),
+      hard.length>0&&h("div",{className:"pnl-red no-print"},
+        h("p",{style:{fontSize:13,fontWeight:700,color:"#b91c1c",marginBottom:6}},"⚠ "+hard.length+" Conflict"+(hard.length!==1?"s":"")),
+        wkC.length>0&&h("div",null,h("p",{style:{fontSize:9,fontWeight:700,color:"#ef4444",textTransform:"uppercase",marginBottom:3}},"Weekly"),wkC.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#b91c1c",marginBottom:2}},"• "+c.msg);})),
+        shC.length>0&&h("div",{style:{marginTop:6}},h("p",{style:{fontSize:9,fontWeight:700,color:"#ef4444",textTransform:"uppercase",marginBottom:3}},"By Shift"),shC.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#b91c1c",marginBottom:2}},h("b",null,"["+c.shift+"] "),c.msg);}))
+      ),
+      dyad.length>0&&h("div",{className:"pnl-ora no-print"},h("p",{style:{fontSize:13,fontWeight:700,color:"#c2410c",marginBottom:4}},"⚑ "+dyad.length+" Dyad Break"+(dyad.length!==1?"s":"")),dyad.map(function(c,i){return h("p",{key:i,style:{fontSize:12,color:"#c2410c",marginBottom:2}},h("b",null,"["+c.shift+"] "),c.msg);})),
+      gn&&cx.length===0&&h("div",{className:"pnl-grn no-print"},"✓ Schedule generated — no conflicts or dyad breaks."),
+      /* undo / revert row */
+      h("div",{className:"no-print",style:{display:"flex",gap:6}},
+        h("button",{className:"btn",style:{background:un.length>0?"#f8fafc":"#f1f5f9",color:un.length>0?"#334155":"#cbd5e1",border:"1px solid #e2e8f0"},disabled:un.length===0,onClick:doUndo},"↩ Undo"+(un.length>0?" ("+un.length+")":"")),
+        h("button",{className:"btn",style:{background:genSnap?"#f8fafc":"#f1f5f9",color:genSnap?"#334155":"#cbd5e1",border:"1px solid #e2e8f0"},disabled:!genSnap,onClick:doRevert},"⟳ Revert to Generated")
+      ),
+      st&&h(Totals,{hist:hi,wr:wr,mwr:mw,onClear:doClear,tab:tt,setTab:setTT}),
+      h(ExportPanel,{text:exportText,open:ex,setOpen:setEX}),
+      /* day tabs with date labels */
+      h("div",{className:"tabs"},DAYS.map(function(d,i){return h("button",{key:d,className:"tab",style:{background:d===dy?"#4f46e5":"transparent",color:d===dy?"#fff":"#64748b"},onClick:function(){setDY(d);}},dayLabel(md,i));})),
+      h("div",{className:"g2"},SHIFTS.map(function(shift){return h("div",{key:shift},
+        h("div",{style:{display:"flex",alignItems:"center",gap:5,marginBottom:7}},
+          h("span",{style:{fontSize:13,fontWeight:700,color:"#1e293b"}},shift==="AM"?"Morning":"Afternoon"),
+          h("span",{style:{fontSize:10,fontWeight:700,padding:"2px 7px",borderRadius:9999,background:shift==="AM"?"#e0f2fe":"#ffedd5",color:shift==="AM"?"#0369a1":"#c2410c"}},shift),
+          !cOpen(cc,dy,shift)&&h("span",{style:{fontSize:11,color:"#94a3b8"}},"— cancelled")),
+        h(ShiftCard,{day:dy,shift:shift,prov:pv,asgn:as,to:to,cc:cc,onPC:updPC,onRC:updRC,onMC:updMC,note:nt[dy][shift],onNote:updNote}));})),
+      h("div",{className:"pnl-wht no-print",style:{padding:10}},
+        h("div",{style:{display:"flex",flexWrap:"wrap",gap:5,marginBottom:6}},
+          h("span",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",alignSelf:"center"}},"Roles"),
+          Object.keys(BS).filter(function(k){return k!=="Unassigned";}).map(function(role){var s=BS[role];return h("span",{key:role,className:"bdg",style:{background:s.bg,color:s.c,borderColor:s.b,fontSize:10}},role);})),
+        h("div",{style:{display:"flex",flexWrap:"wrap",gap:8,fontSize:11,color:"#64748b",marginBottom:4}},
+          h("span",null,h("b",{style:{color:"#0d9488"}},"★")," preferred dyad"),
+          h("span",null,h("b",{style:{color:"#ea580c"}},"⚑")," dyad break"),
+          h("span",null,h("b",null,"WFH")," Kathy Thu")),
+        h("p",{style:{fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.08em",marginBottom:3}},"Preferred Dyads"),
+        h("div",{style:{display:"flex",flexWrap:"wrap",gap:10,fontSize:10,color:"#94a3b8"}},Object.keys(DYAD).filter(function(p){return DYAD[p];}).map(function(p){return h("span",{key:p},p+" → "+DYAD[p]);}))),
+      h("p",{className:"no-print",style:{fontSize:11,color:"#94a3b8",textAlign:"center",paddingBottom:14}},"Press ",h("b",null,"✓ Commit")," to save this week to running totals.")
+    ));}
 ReactDOM.render(React.createElement(App),document.getElementById("root"));
 </script>
 </body>
